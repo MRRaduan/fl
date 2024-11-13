@@ -1,0 +1,33 @@
+.header {
+  width: 100%; 
+  max-width: 1320px;
+  margin: 0 auto;
+  height: 70px;
+  padding: 0 25px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .logo {
+    width: 117px;
+    height: 18px;
+  }
+
+  .countdown-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .button {
+    color: #fff;
+    font-size: 16px;
+    font-weight: 500;
+    border-radius: 2px;
+    background-color: #d5440b;
+    border:none;
+    font-family: 'Gotham A', 'Gotham B', Calibri, Roboto, sans-serif;
+    padding: 12px 16px;
+    cursor: pointer;
+  }
+}
