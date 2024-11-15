@@ -11,7 +11,7 @@ const Header = () => {
         className={styles.logo}
       />
       <div className={styles.countdownWrapper}>
-        <Countdown seconds={300} onFinish={() => {}} />
+        <Countdown seconds={5} loop onFinish={() => {}} />
         <button className={styles.button}>Checkout</button>
       </div>
     </header>

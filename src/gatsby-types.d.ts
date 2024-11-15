@@ -25,8 +25,22 @@ type Scalars = {
   Float: number;
   /** A date string, such as 2007-12-03, compliant with the ISO 8601 standard for representation of dates and times using the Gregorian calendar. */
   Date: string;
+  GatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData;
   /** The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf). */
   JSON: Record<string, unknown>;
+};
+
+type AVIFOptions = {
+  readonly lossless: InputMaybe<Scalars['Boolean']>;
+  readonly quality: InputMaybe<Scalars['Int']>;
+  readonly speed: InputMaybe<Scalars['Int']>;
+};
+
+type BlurredOptions = {
+  /** Force the output format for the low-res preview. Default is to use the same format as the input. You should rarely need to change this */
+  readonly toFormat: InputMaybe<ImageFormat>;
+  /** Width of the generated low-res preview. Default is 20px */
+  readonly width: InputMaybe<Scalars['Int']>;
 };
 
 type BooleanQueryOperatorInput = {
@@ -34,6 +48,1440 @@ type BooleanQueryOperatorInput = {
   readonly in: InputMaybe<ReadonlyArray<InputMaybe<Scalars['Boolean']>>>;
   readonly ne: InputMaybe<Scalars['Boolean']>;
   readonly nin: InputMaybe<ReadonlyArray<InputMaybe<Scalars['Boolean']>>>;
+};
+
+type Countries = Node & {
+  readonly capital: Maybe<ReadonlyArray<Maybe<Scalars['String']>>>;
+  readonly cca3: Maybe<Scalars['String']>;
+  readonly children: ReadonlyArray<Node>;
+  readonly currencies: Maybe<CountriesCurrencies>;
+  readonly flag: Maybe<Scalars['String']>;
+  readonly flags: Maybe<CountriesFlags>;
+  readonly id: Scalars['ID'];
+  readonly internal: Internal;
+  readonly languages: Maybe<ReadonlyArray<Maybe<Scalars['String']>>>;
+  readonly name: Maybe<Scalars['String']>;
+  readonly parent: Maybe<Node>;
+  readonly region: Maybe<Scalars['String']>;
+  readonly timezones: Maybe<ReadonlyArray<Maybe<Scalars['String']>>>;
+};
+
+type CountriesConnection = {
+  readonly distinct: ReadonlyArray<Scalars['String']>;
+  readonly edges: ReadonlyArray<CountriesEdge>;
+  readonly group: ReadonlyArray<CountriesGroupConnection>;
+  readonly max: Maybe<Scalars['Float']>;
+  readonly min: Maybe<Scalars['Float']>;
+  readonly nodes: ReadonlyArray<Countries>;
+  readonly pageInfo: PageInfo;
+  readonly sum: Maybe<Scalars['Float']>;
+  readonly totalCount: Scalars['Int'];
+};
+
+
+type CountriesConnection_distinctArgs = {
+  field: CountriesFieldSelector;
+};
+
+
+type CountriesConnection_groupArgs = {
+  field: CountriesFieldSelector;
+  limit: InputMaybe<Scalars['Int']>;
+  skip: InputMaybe<Scalars['Int']>;
+};
+
+
+type CountriesConnection_maxArgs = {
+  field: CountriesFieldSelector;
+};
+
+
+type CountriesConnection_minArgs = {
+  field: CountriesFieldSelector;
+};
+
+
+type CountriesConnection_sumArgs = {
+  field: CountriesFieldSelector;
+};
+
+type CountriesCurrencies = {
+  readonly AFN: Maybe<CountriesCurrenciesAFN>;
+  readonly AUD: Maybe<CountriesCurrenciesAUD>;
+  readonly AWG: Maybe<CountriesCurrenciesAWG>;
+  readonly AZN: Maybe<CountriesCurrenciesAZN>;
+  readonly BBD: Maybe<CountriesCurrenciesBBD>;
+  readonly BDT: Maybe<CountriesCurrenciesBDT>;
+  readonly BIF: Maybe<CountriesCurrenciesBIF>;
+  readonly CHF: Maybe<CountriesCurrenciesCHF>;
+  readonly CKD: Maybe<CountriesCurrenciesCKD>;
+  readonly CNY: Maybe<CountriesCurrenciesCNY>;
+  readonly COP: Maybe<CountriesCurrenciesCOP>;
+  readonly CVE: Maybe<CountriesCurrenciesCVE>;
+  readonly DJF: Maybe<CountriesCurrenciesDJF>;
+  readonly DKK: Maybe<CountriesCurrenciesDKK>;
+  readonly DZD: Maybe<CountriesCurrenciesDZD>;
+  readonly EGP: Maybe<CountriesCurrenciesEGP>;
+  readonly EUR: Maybe<CountriesCurrenciesEUR>;
+  readonly FOK: Maybe<CountriesCurrenciesFOK>;
+  readonly GBP: Maybe<CountriesCurrenciesGBP>;
+  readonly GGP: Maybe<CountriesCurrenciesGGP>;
+  readonly HUF: Maybe<CountriesCurrenciesHUF>;
+  readonly IDR: Maybe<CountriesCurrenciesIDR>;
+  readonly ILS: Maybe<CountriesCurrenciesILS>;
+  readonly JOD: Maybe<CountriesCurrenciesJOD>;
+  readonly KPW: Maybe<CountriesCurrenciesKPW>;
+  readonly LAK: Maybe<CountriesCurrenciesLAK>;
+  readonly LKR: Maybe<CountriesCurrenciesLKR>;
+  readonly LYD: Maybe<CountriesCurrenciesLYD>;
+  readonly MAD: Maybe<CountriesCurrenciesMAD>;
+  readonly MKD: Maybe<CountriesCurrenciesMKD>;
+  readonly MUR: Maybe<CountriesCurrenciesMUR>;
+  readonly MXN: Maybe<CountriesCurrenciesMXN>;
+  readonly NOK: Maybe<CountriesCurrenciesNOK>;
+  readonly NZD: Maybe<CountriesCurrenciesNZD>;
+  readonly PEN: Maybe<CountriesCurrenciesPEN>;
+  readonly SBD: Maybe<CountriesCurrenciesSBD>;
+  readonly SGD: Maybe<CountriesCurrenciesSGD>;
+  readonly SHP: Maybe<CountriesCurrenciesSHP>;
+  readonly SLL: Maybe<CountriesCurrenciesSLL>;
+  readonly TND: Maybe<CountriesCurrenciesTND>;
+  readonly TRY: Maybe<CountriesCurrenciesTRY>;
+  readonly TWD: Maybe<CountriesCurrenciesTWD>;
+  readonly UGX: Maybe<CountriesCurrenciesUGX>;
+  readonly USD: Maybe<CountriesCurrenciesUSD>;
+  readonly UZS: Maybe<CountriesCurrenciesUZS>;
+  readonly XAF: Maybe<CountriesCurrenciesXAF>;
+  readonly XCD: Maybe<CountriesCurrenciesXCD>;
+  readonly XOF: Maybe<CountriesCurrenciesXOF>;
+  readonly XPF: Maybe<CountriesCurrenciesXPF>;
+  readonly YER: Maybe<CountriesCurrenciesYER>;
+  readonly ZAR: Maybe<CountriesCurrenciesZAR>;
+  readonly ZMW: Maybe<CountriesCurrenciesZMW>;
+};
+
+type CountriesCurrenciesAFN = {
+  readonly name: Maybe<Scalars['String']>;
+  readonly symbol: Maybe<Scalars['String']>;
+};
+
+type CountriesCurrenciesAFNFieldSelector = {
+  readonly name: InputMaybe<FieldSelectorEnum>;
+  readonly symbol: InputMaybe<FieldSelectorEnum>;
+};
+
+type CountriesCurrenciesAFNFilterInput = {
+  readonly name: InputMaybe<StringQueryOperatorInput>;
+  readonly symbol: InputMaybe<StringQueryOperatorInput>;
+};
+
+type CountriesCurrenciesAFNSortInput = {
+  readonly name: InputMaybe<SortOrderEnum>;
+  readonly symbol: InputMaybe<SortOrderEnum>;
+};
+
+type CountriesCurrenciesAUD = {
+  readonly name: Maybe<Scalars['String']>;
+  readonly symbol: Maybe<Scalars['String']>;
+};
+
+type CountriesCurrenciesAUDFieldSelector = {
+  readonly name: InputMaybe<FieldSelectorEnum>;
+  readonly symbol: InputMaybe<FieldSelectorEnum>;
+};
+
+type CountriesCurrenciesAUDFilterInput = {
+  readonly name: InputMaybe<StringQueryOperatorInput>;
+  readonly symbol: InputMaybe<StringQueryOperatorInput>;
+};
+
+type CountriesCurrenciesAUDSortInput = {
+  readonly name: InputMaybe<SortOrderEnum>;
+  readonly symbol: InputMaybe<SortOrderEnum>;
+};
+
+type CountriesCurrenciesAWG = {
+  readonly name: Maybe<Scalars['String']>;
+  readonly symbol: Maybe<Scalars['String']>;
+};
+
+type CountriesCurrenciesAWGFieldSelector = {
+  readonly name: InputMaybe<FieldSelectorEnum>;
+  readonly symbol: InputMaybe<FieldSelectorEnum>;
+};
+
+type CountriesCurrenciesAWGFilterInput = {
+  readonly name: InputMaybe<StringQueryOperatorInput>;
+  readonly symbol: InputMaybe<StringQueryOperatorInput>;
+};
+
+type CountriesCurrenciesAWGSortInput = {
+  readonly name: InputMaybe<SortOrderEnum>;
+  readonly symbol: InputMaybe<SortOrderEnum>;
+};
+
+type CountriesCurrenciesAZN = {
+  readonly name: Maybe<Scalars['String']>;
+  readonly symbol: Maybe<Scalars['String']>;
+};
+
+type CountriesCurrenciesAZNFieldSelector = {
+  readonly name: InputMaybe<FieldSelectorEnum>;
+  readonly symbol: InputMaybe<FieldSelectorEnum>;
+};
+
+type CountriesCurrenciesAZNFilterInput = {
+  readonly name: InputMaybe<StringQueryOperatorInput>;
+  readonly symbol: InputMaybe<StringQueryOperatorInput>;
+};
+
+type CountriesCurrenciesAZNSortInput = {
+  readonly name: InputMaybe<SortOrderEnum>;
+  readonly symbol: InputMaybe<SortOrderEnum>;
+};
+
+type CountriesCurrenciesBBD = {
+  readonly name: Maybe<Scalars['String']>;
+  readonly symbol: Maybe<Scalars['String']>;
+};
+
+type CountriesCurrenciesBBDFieldSelector = {
+  readonly name: InputMaybe<FieldSelectorEnum>;
+  readonly symbol: InputMaybe<FieldSelectorEnum>;
+};
+
+type CountriesCurrenciesBBDFilterInput = {
+  readonly name: InputMaybe<StringQueryOperatorInput>;
+  readonly symbol: InputMaybe<StringQueryOperatorInput>;
+};
+
+type CountriesCurrenciesBBDSortInput = {
+  readonly name: InputMaybe<SortOrderEnum>;
+  readonly symbol: InputMaybe<SortOrderEnum>;
+};
+
+type CountriesCurrenciesBDT = {
+  readonly name: Maybe<Scalars['String']>;
+  readonly symbol: Maybe<Scalars['String']>;
+};
+
+type CountriesCurrenciesBDTFieldSelector = {
+  readonly name: InputMaybe<FieldSelectorEnum>;
+  readonly symbol: InputMaybe<FieldSelectorEnum>;
+};
+
+type CountriesCurrenciesBDTFilterInput = {
+  readonly name: InputMaybe<StringQueryOperatorInput>;
+  readonly symbol: InputMaybe<StringQueryOperatorInput>;
+};
+
+type CountriesCurrenciesBDTSortInput = {
+  readonly name: InputMaybe<SortOrderEnum>;
+  readonly symbol: InputMaybe<SortOrderEnum>;
+};
+
+type CountriesCurrenciesBIF = {
+  readonly name: Maybe<Scalars['String']>;
+  readonly symbol: Maybe<Scalars['String']>;
+};
+
+type CountriesCurrenciesBIFFieldSelector = {
+  readonly name: InputMaybe<FieldSelectorEnum>;
+  readonly symbol: InputMaybe<FieldSelectorEnum>;
+};
+
+type CountriesCurrenciesBIFFilterInput = {
+  readonly name: InputMaybe<StringQueryOperatorInput>;
+  readonly symbol: InputMaybe<StringQueryOperatorInput>;
+};
+
+type CountriesCurrenciesBIFSortInput = {
+  readonly name: InputMaybe<SortOrderEnum>;
+  readonly symbol: InputMaybe<SortOrderEnum>;
+};
+
+type CountriesCurrenciesCHF = {
+  readonly name: Maybe<Scalars['String']>;
+  readonly symbol: Maybe<Scalars['String']>;
+};
+
+type CountriesCurrenciesCHFFieldSelector = {
+  readonly name: InputMaybe<FieldSelectorEnum>;
+  readonly symbol: InputMaybe<FieldSelectorEnum>;
+};
+
+type CountriesCurrenciesCHFFilterInput = {
+  readonly name: InputMaybe<StringQueryOperatorInput>;
+  readonly symbol: InputMaybe<StringQueryOperatorInput>;
+};
+
+type CountriesCurrenciesCHFSortInput = {
+  readonly name: InputMaybe<SortOrderEnum>;
+  readonly symbol: InputMaybe<SortOrderEnum>;
+};
+
+type CountriesCurrenciesCKD = {
+  readonly name: Maybe<Scalars['String']>;
+  readonly symbol: Maybe<Scalars['String']>;
+};
+
+type CountriesCurrenciesCKDFieldSelector = {
+  readonly name: InputMaybe<FieldSelectorEnum>;
+  readonly symbol: InputMaybe<FieldSelectorEnum>;
+};
+
+type CountriesCurrenciesCKDFilterInput = {
+  readonly name: InputMaybe<StringQueryOperatorInput>;
+  readonly symbol: InputMaybe<StringQueryOperatorInput>;
+};
+
+type CountriesCurrenciesCKDSortInput = {
+  readonly name: InputMaybe<SortOrderEnum>;
+  readonly symbol: InputMaybe<SortOrderEnum>;
+};
+
+type CountriesCurrenciesCNY = {
+  readonly name: Maybe<Scalars['String']>;
+  readonly symbol: Maybe<Scalars['String']>;
+};
+
+type CountriesCurrenciesCNYFieldSelector = {
+  readonly name: InputMaybe<FieldSelectorEnum>;
+  readonly symbol: InputMaybe<FieldSelectorEnum>;
+};
+
+type CountriesCurrenciesCNYFilterInput = {
+  readonly name: InputMaybe<StringQueryOperatorInput>;
+  readonly symbol: InputMaybe<StringQueryOperatorInput>;
+};
+
+type CountriesCurrenciesCNYSortInput = {
+  readonly name: InputMaybe<SortOrderEnum>;
+  readonly symbol: InputMaybe<SortOrderEnum>;
+};
+
+type CountriesCurrenciesCOP = {
+  readonly name: Maybe<Scalars['String']>;
+  readonly symbol: Maybe<Scalars['String']>;
+};
+
+type CountriesCurrenciesCOPFieldSelector = {
+  readonly name: InputMaybe<FieldSelectorEnum>;
+  readonly symbol: InputMaybe<FieldSelectorEnum>;
+};
+
+type CountriesCurrenciesCOPFilterInput = {
+  readonly name: InputMaybe<StringQueryOperatorInput>;
+  readonly symbol: InputMaybe<StringQueryOperatorInput>;
+};
+
+type CountriesCurrenciesCOPSortInput = {
+  readonly name: InputMaybe<SortOrderEnum>;
+  readonly symbol: InputMaybe<SortOrderEnum>;
+};
+
+type CountriesCurrenciesCVE = {
+  readonly name: Maybe<Scalars['String']>;
+  readonly symbol: Maybe<Scalars['String']>;
+};
+
+type CountriesCurrenciesCVEFieldSelector = {
+  readonly name: InputMaybe<FieldSelectorEnum>;
+  readonly symbol: InputMaybe<FieldSelectorEnum>;
+};
+
+type CountriesCurrenciesCVEFilterInput = {
+  readonly name: InputMaybe<StringQueryOperatorInput>;
+  readonly symbol: InputMaybe<StringQueryOperatorInput>;
+};
+
+type CountriesCurrenciesCVESortInput = {
+  readonly name: InputMaybe<SortOrderEnum>;
+  readonly symbol: InputMaybe<SortOrderEnum>;
+};
+
+type CountriesCurrenciesDJF = {
+  readonly name: Maybe<Scalars['String']>;
+  readonly symbol: Maybe<Scalars['String']>;
+};
+
+type CountriesCurrenciesDJFFieldSelector = {
+  readonly name: InputMaybe<FieldSelectorEnum>;
+  readonly symbol: InputMaybe<FieldSelectorEnum>;
+};
+
+type CountriesCurrenciesDJFFilterInput = {
+  readonly name: InputMaybe<StringQueryOperatorInput>;
+  readonly symbol: InputMaybe<StringQueryOperatorInput>;
+};
+
+type CountriesCurrenciesDJFSortInput = {
+  readonly name: InputMaybe<SortOrderEnum>;
+  readonly symbol: InputMaybe<SortOrderEnum>;
+};
+
+type CountriesCurrenciesDKK = {
+  readonly name: Maybe<Scalars['String']>;
+  readonly symbol: Maybe<Scalars['String']>;
+};
+
+type CountriesCurrenciesDKKFieldSelector = {
+  readonly name: InputMaybe<FieldSelectorEnum>;
+  readonly symbol: InputMaybe<FieldSelectorEnum>;
+};
+
+type CountriesCurrenciesDKKFilterInput = {
+  readonly name: InputMaybe<StringQueryOperatorInput>;
+  readonly symbol: InputMaybe<StringQueryOperatorInput>;
+};
+
+type CountriesCurrenciesDKKSortInput = {
+  readonly name: InputMaybe<SortOrderEnum>;
+  readonly symbol: InputMaybe<SortOrderEnum>;
+};
+
+type CountriesCurrenciesDZD = {
+  readonly name: Maybe<Scalars['String']>;
+  readonly symbol: Maybe<Scalars['String']>;
+};
+
+type CountriesCurrenciesDZDFieldSelector = {
+  readonly name: InputMaybe<FieldSelectorEnum>;
+  readonly symbol: InputMaybe<FieldSelectorEnum>;
+};
+
+type CountriesCurrenciesDZDFilterInput = {
+  readonly name: InputMaybe<StringQueryOperatorInput>;
+  readonly symbol: InputMaybe<StringQueryOperatorInput>;
+};
+
+type CountriesCurrenciesDZDSortInput = {
+  readonly name: InputMaybe<SortOrderEnum>;
+  readonly symbol: InputMaybe<SortOrderEnum>;
+};
+
+type CountriesCurrenciesEGP = {
+  readonly name: Maybe<Scalars['String']>;
+  readonly symbol: Maybe<Scalars['String']>;
+};
+
+type CountriesCurrenciesEGPFieldSelector = {
+  readonly name: InputMaybe<FieldSelectorEnum>;
+  readonly symbol: InputMaybe<FieldSelectorEnum>;
+};
+
+type CountriesCurrenciesEGPFilterInput = {
+  readonly name: InputMaybe<StringQueryOperatorInput>;
+  readonly symbol: InputMaybe<StringQueryOperatorInput>;
+};
+
+type CountriesCurrenciesEGPSortInput = {
+  readonly name: InputMaybe<SortOrderEnum>;
+  readonly symbol: InputMaybe<SortOrderEnum>;
+};
+
+type CountriesCurrenciesEUR = {
+  readonly name: Maybe<Scalars['String']>;
+  readonly symbol: Maybe<Scalars['String']>;
+};
+
+type CountriesCurrenciesEURFieldSelector = {
+  readonly name: InputMaybe<FieldSelectorEnum>;
+  readonly symbol: InputMaybe<FieldSelectorEnum>;
+};
+
+type CountriesCurrenciesEURFilterInput = {
+  readonly name: InputMaybe<StringQueryOperatorInput>;
+  readonly symbol: InputMaybe<StringQueryOperatorInput>;
+};
+
+type CountriesCurrenciesEURSortInput = {
+  readonly name: InputMaybe<SortOrderEnum>;
+  readonly symbol: InputMaybe<SortOrderEnum>;
+};
+
+type CountriesCurrenciesFOK = {
+  readonly name: Maybe<Scalars['String']>;
+  readonly symbol: Maybe<Scalars['String']>;
+};
+
+type CountriesCurrenciesFOKFieldSelector = {
+  readonly name: InputMaybe<FieldSelectorEnum>;
+  readonly symbol: InputMaybe<FieldSelectorEnum>;
+};
+
+type CountriesCurrenciesFOKFilterInput = {
+  readonly name: InputMaybe<StringQueryOperatorInput>;
+  readonly symbol: InputMaybe<StringQueryOperatorInput>;
+};
+
+type CountriesCurrenciesFOKSortInput = {
+  readonly name: InputMaybe<SortOrderEnum>;
+  readonly symbol: InputMaybe<SortOrderEnum>;
+};
+
+type CountriesCurrenciesFieldSelector = {
+  readonly AFN: InputMaybe<CountriesCurrenciesAFNFieldSelector>;
+  readonly AUD: InputMaybe<CountriesCurrenciesAUDFieldSelector>;
+  readonly AWG: InputMaybe<CountriesCurrenciesAWGFieldSelector>;
+  readonly AZN: InputMaybe<CountriesCurrenciesAZNFieldSelector>;
+  readonly BBD: InputMaybe<CountriesCurrenciesBBDFieldSelector>;
+  readonly BDT: InputMaybe<CountriesCurrenciesBDTFieldSelector>;
+  readonly BIF: InputMaybe<CountriesCurrenciesBIFFieldSelector>;
+  readonly CHF: InputMaybe<CountriesCurrenciesCHFFieldSelector>;
+  readonly CKD: InputMaybe<CountriesCurrenciesCKDFieldSelector>;
+  readonly CNY: InputMaybe<CountriesCurrenciesCNYFieldSelector>;
+  readonly COP: InputMaybe<CountriesCurrenciesCOPFieldSelector>;
+  readonly CVE: InputMaybe<CountriesCurrenciesCVEFieldSelector>;
+  readonly DJF: InputMaybe<CountriesCurrenciesDJFFieldSelector>;
+  readonly DKK: InputMaybe<CountriesCurrenciesDKKFieldSelector>;
+  readonly DZD: InputMaybe<CountriesCurrenciesDZDFieldSelector>;
+  readonly EGP: InputMaybe<CountriesCurrenciesEGPFieldSelector>;
+  readonly EUR: InputMaybe<CountriesCurrenciesEURFieldSelector>;
+  readonly FOK: InputMaybe<CountriesCurrenciesFOKFieldSelector>;
+  readonly GBP: InputMaybe<CountriesCurrenciesGBPFieldSelector>;
+  readonly GGP: InputMaybe<CountriesCurrenciesGGPFieldSelector>;
+  readonly HUF: InputMaybe<CountriesCurrenciesHUFFieldSelector>;
+  readonly IDR: InputMaybe<CountriesCurrenciesIDRFieldSelector>;
+  readonly ILS: InputMaybe<CountriesCurrenciesILSFieldSelector>;
+  readonly JOD: InputMaybe<CountriesCurrenciesJODFieldSelector>;
+  readonly KPW: InputMaybe<CountriesCurrenciesKPWFieldSelector>;
+  readonly LAK: InputMaybe<CountriesCurrenciesLAKFieldSelector>;
+  readonly LKR: InputMaybe<CountriesCurrenciesLKRFieldSelector>;
+  readonly LYD: InputMaybe<CountriesCurrenciesLYDFieldSelector>;
+  readonly MAD: InputMaybe<CountriesCurrenciesMADFieldSelector>;
+  readonly MKD: InputMaybe<CountriesCurrenciesMKDFieldSelector>;
+  readonly MUR: InputMaybe<CountriesCurrenciesMURFieldSelector>;
+  readonly MXN: InputMaybe<CountriesCurrenciesMXNFieldSelector>;
+  readonly NOK: InputMaybe<CountriesCurrenciesNOKFieldSelector>;
+  readonly NZD: InputMaybe<CountriesCurrenciesNZDFieldSelector>;
+  readonly PEN: InputMaybe<CountriesCurrenciesPENFieldSelector>;
+  readonly SBD: InputMaybe<CountriesCurrenciesSBDFieldSelector>;
+  readonly SGD: InputMaybe<CountriesCurrenciesSGDFieldSelector>;
+  readonly SHP: InputMaybe<CountriesCurrenciesSHPFieldSelector>;
+  readonly SLL: InputMaybe<CountriesCurrenciesSLLFieldSelector>;
+  readonly TND: InputMaybe<CountriesCurrenciesTNDFieldSelector>;
+  readonly TRY: InputMaybe<CountriesCurrenciesTRYFieldSelector>;
+  readonly TWD: InputMaybe<CountriesCurrenciesTWDFieldSelector>;
+  readonly UGX: InputMaybe<CountriesCurrenciesUGXFieldSelector>;
+  readonly USD: InputMaybe<CountriesCurrenciesUSDFieldSelector>;
+  readonly UZS: InputMaybe<CountriesCurrenciesUZSFieldSelector>;
+  readonly XAF: InputMaybe<CountriesCurrenciesXAFFieldSelector>;
+  readonly XCD: InputMaybe<CountriesCurrenciesXCDFieldSelector>;
+  readonly XOF: InputMaybe<CountriesCurrenciesXOFFieldSelector>;
+  readonly XPF: InputMaybe<CountriesCurrenciesXPFFieldSelector>;
+  readonly YER: InputMaybe<CountriesCurrenciesYERFieldSelector>;
+  readonly ZAR: InputMaybe<CountriesCurrenciesZARFieldSelector>;
+  readonly ZMW: InputMaybe<CountriesCurrenciesZMWFieldSelector>;
+};
+
+type CountriesCurrenciesFilterInput = {
+  readonly AFN: InputMaybe<CountriesCurrenciesAFNFilterInput>;
+  readonly AUD: InputMaybe<CountriesCurrenciesAUDFilterInput>;
+  readonly AWG: InputMaybe<CountriesCurrenciesAWGFilterInput>;
+  readonly AZN: InputMaybe<CountriesCurrenciesAZNFilterInput>;
+  readonly BBD: InputMaybe<CountriesCurrenciesBBDFilterInput>;
+  readonly BDT: InputMaybe<CountriesCurrenciesBDTFilterInput>;
+  readonly BIF: InputMaybe<CountriesCurrenciesBIFFilterInput>;
+  readonly CHF: InputMaybe<CountriesCurrenciesCHFFilterInput>;
+  readonly CKD: InputMaybe<CountriesCurrenciesCKDFilterInput>;
+  readonly CNY: InputMaybe<CountriesCurrenciesCNYFilterInput>;
+  readonly COP: InputMaybe<CountriesCurrenciesCOPFilterInput>;
+  readonly CVE: InputMaybe<CountriesCurrenciesCVEFilterInput>;
+  readonly DJF: InputMaybe<CountriesCurrenciesDJFFilterInput>;
+  readonly DKK: InputMaybe<CountriesCurrenciesDKKFilterInput>;
+  readonly DZD: InputMaybe<CountriesCurrenciesDZDFilterInput>;
+  readonly EGP: InputMaybe<CountriesCurrenciesEGPFilterInput>;
+  readonly EUR: InputMaybe<CountriesCurrenciesEURFilterInput>;
+  readonly FOK: InputMaybe<CountriesCurrenciesFOKFilterInput>;
+  readonly GBP: InputMaybe<CountriesCurrenciesGBPFilterInput>;
+  readonly GGP: InputMaybe<CountriesCurrenciesGGPFilterInput>;
+  readonly HUF: InputMaybe<CountriesCurrenciesHUFFilterInput>;
+  readonly IDR: InputMaybe<CountriesCurrenciesIDRFilterInput>;
+  readonly ILS: InputMaybe<CountriesCurrenciesILSFilterInput>;
+  readonly JOD: InputMaybe<CountriesCurrenciesJODFilterInput>;
+  readonly KPW: InputMaybe<CountriesCurrenciesKPWFilterInput>;
+  readonly LAK: InputMaybe<CountriesCurrenciesLAKFilterInput>;
+  readonly LKR: InputMaybe<CountriesCurrenciesLKRFilterInput>;
+  readonly LYD: InputMaybe<CountriesCurrenciesLYDFilterInput>;
+  readonly MAD: InputMaybe<CountriesCurrenciesMADFilterInput>;
+  readonly MKD: InputMaybe<CountriesCurrenciesMKDFilterInput>;
+  readonly MUR: InputMaybe<CountriesCurrenciesMURFilterInput>;
+  readonly MXN: InputMaybe<CountriesCurrenciesMXNFilterInput>;
+  readonly NOK: InputMaybe<CountriesCurrenciesNOKFilterInput>;
+  readonly NZD: InputMaybe<CountriesCurrenciesNZDFilterInput>;
+  readonly PEN: InputMaybe<CountriesCurrenciesPENFilterInput>;
+  readonly SBD: InputMaybe<CountriesCurrenciesSBDFilterInput>;
+  readonly SGD: InputMaybe<CountriesCurrenciesSGDFilterInput>;
+  readonly SHP: InputMaybe<CountriesCurrenciesSHPFilterInput>;
+  readonly SLL: InputMaybe<CountriesCurrenciesSLLFilterInput>;
+  readonly TND: InputMaybe<CountriesCurrenciesTNDFilterInput>;
+  readonly TRY: InputMaybe<CountriesCurrenciesTRYFilterInput>;
+  readonly TWD: InputMaybe<CountriesCurrenciesTWDFilterInput>;
+  readonly UGX: InputMaybe<CountriesCurrenciesUGXFilterInput>;
+  readonly USD: InputMaybe<CountriesCurrenciesUSDFilterInput>;
+  readonly UZS: InputMaybe<CountriesCurrenciesUZSFilterInput>;
+  readonly XAF: InputMaybe<CountriesCurrenciesXAFFilterInput>;
+  readonly XCD: InputMaybe<CountriesCurrenciesXCDFilterInput>;
+  readonly XOF: InputMaybe<CountriesCurrenciesXOFFilterInput>;
+  readonly XPF: InputMaybe<CountriesCurrenciesXPFFilterInput>;
+  readonly YER: InputMaybe<CountriesCurrenciesYERFilterInput>;
+  readonly ZAR: InputMaybe<CountriesCurrenciesZARFilterInput>;
+  readonly ZMW: InputMaybe<CountriesCurrenciesZMWFilterInput>;
+};
+
+type CountriesCurrenciesGBP = {
+  readonly name: Maybe<Scalars['String']>;
+  readonly symbol: Maybe<Scalars['String']>;
+};
+
+type CountriesCurrenciesGBPFieldSelector = {
+  readonly name: InputMaybe<FieldSelectorEnum>;
+  readonly symbol: InputMaybe<FieldSelectorEnum>;
+};
+
+type CountriesCurrenciesGBPFilterInput = {
+  readonly name: InputMaybe<StringQueryOperatorInput>;
+  readonly symbol: InputMaybe<StringQueryOperatorInput>;
+};
+
+type CountriesCurrenciesGBPSortInput = {
+  readonly name: InputMaybe<SortOrderEnum>;
+  readonly symbol: InputMaybe<SortOrderEnum>;
+};
+
+type CountriesCurrenciesGGP = {
+  readonly name: Maybe<Scalars['String']>;
+  readonly symbol: Maybe<Scalars['String']>;
+};
+
+type CountriesCurrenciesGGPFieldSelector = {
+  readonly name: InputMaybe<FieldSelectorEnum>;
+  readonly symbol: InputMaybe<FieldSelectorEnum>;
+};
+
+type CountriesCurrenciesGGPFilterInput = {
+  readonly name: InputMaybe<StringQueryOperatorInput>;
+  readonly symbol: InputMaybe<StringQueryOperatorInput>;
+};
+
+type CountriesCurrenciesGGPSortInput = {
+  readonly name: InputMaybe<SortOrderEnum>;
+  readonly symbol: InputMaybe<SortOrderEnum>;
+};
+
+type CountriesCurrenciesHUF = {
+  readonly name: Maybe<Scalars['String']>;
+  readonly symbol: Maybe<Scalars['String']>;
+};
+
+type CountriesCurrenciesHUFFieldSelector = {
+  readonly name: InputMaybe<FieldSelectorEnum>;
+  readonly symbol: InputMaybe<FieldSelectorEnum>;
+};
+
+type CountriesCurrenciesHUFFilterInput = {
+  readonly name: InputMaybe<StringQueryOperatorInput>;
+  readonly symbol: InputMaybe<StringQueryOperatorInput>;
+};
+
+type CountriesCurrenciesHUFSortInput = {
+  readonly name: InputMaybe<SortOrderEnum>;
+  readonly symbol: InputMaybe<SortOrderEnum>;
+};
+
+type CountriesCurrenciesIDR = {
+  readonly name: Maybe<Scalars['String']>;
+  readonly symbol: Maybe<Scalars['String']>;
+};
+
+type CountriesCurrenciesIDRFieldSelector = {
+  readonly name: InputMaybe<FieldSelectorEnum>;
+  readonly symbol: InputMaybe<FieldSelectorEnum>;
+};
+
+type CountriesCurrenciesIDRFilterInput = {
+  readonly name: InputMaybe<StringQueryOperatorInput>;
+  readonly symbol: InputMaybe<StringQueryOperatorInput>;
+};
+
+type CountriesCurrenciesIDRSortInput = {
+  readonly name: InputMaybe<SortOrderEnum>;
+  readonly symbol: InputMaybe<SortOrderEnum>;
+};
+
+type CountriesCurrenciesILS = {
+  readonly name: Maybe<Scalars['String']>;
+  readonly symbol: Maybe<Scalars['String']>;
+};
+
+type CountriesCurrenciesILSFieldSelector = {
+  readonly name: InputMaybe<FieldSelectorEnum>;
+  readonly symbol: InputMaybe<FieldSelectorEnum>;
+};
+
+type CountriesCurrenciesILSFilterInput = {
+  readonly name: InputMaybe<StringQueryOperatorInput>;
+  readonly symbol: InputMaybe<StringQueryOperatorInput>;
+};
+
+type CountriesCurrenciesILSSortInput = {
+  readonly name: InputMaybe<SortOrderEnum>;
+  readonly symbol: InputMaybe<SortOrderEnum>;
+};
+
+type CountriesCurrenciesJOD = {
+  readonly name: Maybe<Scalars['String']>;
+  readonly symbol: Maybe<Scalars['String']>;
+};
+
+type CountriesCurrenciesJODFieldSelector = {
+  readonly name: InputMaybe<FieldSelectorEnum>;
+  readonly symbol: InputMaybe<FieldSelectorEnum>;
+};
+
+type CountriesCurrenciesJODFilterInput = {
+  readonly name: InputMaybe<StringQueryOperatorInput>;
+  readonly symbol: InputMaybe<StringQueryOperatorInput>;
+};
+
+type CountriesCurrenciesJODSortInput = {
+  readonly name: InputMaybe<SortOrderEnum>;
+  readonly symbol: InputMaybe<SortOrderEnum>;
+};
+
+type CountriesCurrenciesKPW = {
+  readonly name: Maybe<Scalars['String']>;
+  readonly symbol: Maybe<Scalars['String']>;
+};
+
+type CountriesCurrenciesKPWFieldSelector = {
+  readonly name: InputMaybe<FieldSelectorEnum>;
+  readonly symbol: InputMaybe<FieldSelectorEnum>;
+};
+
+type CountriesCurrenciesKPWFilterInput = {
+  readonly name: InputMaybe<StringQueryOperatorInput>;
+  readonly symbol: InputMaybe<StringQueryOperatorInput>;
+};
+
+type CountriesCurrenciesKPWSortInput = {
+  readonly name: InputMaybe<SortOrderEnum>;
+  readonly symbol: InputMaybe<SortOrderEnum>;
+};
+
+type CountriesCurrenciesLAK = {
+  readonly name: Maybe<Scalars['String']>;
+  readonly symbol: Maybe<Scalars['String']>;
+};
+
+type CountriesCurrenciesLAKFieldSelector = {
+  readonly name: InputMaybe<FieldSelectorEnum>;
+  readonly symbol: InputMaybe<FieldSelectorEnum>;
+};
+
+type CountriesCurrenciesLAKFilterInput = {
+  readonly name: InputMaybe<StringQueryOperatorInput>;
+  readonly symbol: InputMaybe<StringQueryOperatorInput>;
+};
+
+type CountriesCurrenciesLAKSortInput = {
+  readonly name: InputMaybe<SortOrderEnum>;
+  readonly symbol: InputMaybe<SortOrderEnum>;
+};
+
+type CountriesCurrenciesLKR = {
+  readonly name: Maybe<Scalars['String']>;
+  readonly symbol: Maybe<Scalars['String']>;
+};
+
+type CountriesCurrenciesLKRFieldSelector = {
+  readonly name: InputMaybe<FieldSelectorEnum>;
+  readonly symbol: InputMaybe<FieldSelectorEnum>;
+};
+
+type CountriesCurrenciesLKRFilterInput = {
+  readonly name: InputMaybe<StringQueryOperatorInput>;
+  readonly symbol: InputMaybe<StringQueryOperatorInput>;
+};
+
+type CountriesCurrenciesLKRSortInput = {
+  readonly name: InputMaybe<SortOrderEnum>;
+  readonly symbol: InputMaybe<SortOrderEnum>;
+};
+
+type CountriesCurrenciesLYD = {
+  readonly name: Maybe<Scalars['String']>;
+  readonly symbol: Maybe<Scalars['String']>;
+};
+
+type CountriesCurrenciesLYDFieldSelector = {
+  readonly name: InputMaybe<FieldSelectorEnum>;
+  readonly symbol: InputMaybe<FieldSelectorEnum>;
+};
+
+type CountriesCurrenciesLYDFilterInput = {
+  readonly name: InputMaybe<StringQueryOperatorInput>;
+  readonly symbol: InputMaybe<StringQueryOperatorInput>;
+};
+
+type CountriesCurrenciesLYDSortInput = {
+  readonly name: InputMaybe<SortOrderEnum>;
+  readonly symbol: InputMaybe<SortOrderEnum>;
+};
+
+type CountriesCurrenciesMAD = {
+  readonly name: Maybe<Scalars['String']>;
+  readonly symbol: Maybe<Scalars['String']>;
+};
+
+type CountriesCurrenciesMADFieldSelector = {
+  readonly name: InputMaybe<FieldSelectorEnum>;
+  readonly symbol: InputMaybe<FieldSelectorEnum>;
+};
+
+type CountriesCurrenciesMADFilterInput = {
+  readonly name: InputMaybe<StringQueryOperatorInput>;
+  readonly symbol: InputMaybe<StringQueryOperatorInput>;
+};
+
+type CountriesCurrenciesMADSortInput = {
+  readonly name: InputMaybe<SortOrderEnum>;
+  readonly symbol: InputMaybe<SortOrderEnum>;
+};
+
+type CountriesCurrenciesMKD = {
+  readonly name: Maybe<Scalars['String']>;
+  readonly symbol: Maybe<Scalars['String']>;
+};
+
+type CountriesCurrenciesMKDFieldSelector = {
+  readonly name: InputMaybe<FieldSelectorEnum>;
+  readonly symbol: InputMaybe<FieldSelectorEnum>;
+};
+
+type CountriesCurrenciesMKDFilterInput = {
+  readonly name: InputMaybe<StringQueryOperatorInput>;
+  readonly symbol: InputMaybe<StringQueryOperatorInput>;
+};
+
+type CountriesCurrenciesMKDSortInput = {
+  readonly name: InputMaybe<SortOrderEnum>;
+  readonly symbol: InputMaybe<SortOrderEnum>;
+};
+
+type CountriesCurrenciesMUR = {
+  readonly name: Maybe<Scalars['String']>;
+  readonly symbol: Maybe<Scalars['String']>;
+};
+
+type CountriesCurrenciesMURFieldSelector = {
+  readonly name: InputMaybe<FieldSelectorEnum>;
+  readonly symbol: InputMaybe<FieldSelectorEnum>;
+};
+
+type CountriesCurrenciesMURFilterInput = {
+  readonly name: InputMaybe<StringQueryOperatorInput>;
+  readonly symbol: InputMaybe<StringQueryOperatorInput>;
+};
+
+type CountriesCurrenciesMURSortInput = {
+  readonly name: InputMaybe<SortOrderEnum>;
+  readonly symbol: InputMaybe<SortOrderEnum>;
+};
+
+type CountriesCurrenciesMXN = {
+  readonly name: Maybe<Scalars['String']>;
+  readonly symbol: Maybe<Scalars['String']>;
+};
+
+type CountriesCurrenciesMXNFieldSelector = {
+  readonly name: InputMaybe<FieldSelectorEnum>;
+  readonly symbol: InputMaybe<FieldSelectorEnum>;
+};
+
+type CountriesCurrenciesMXNFilterInput = {
+  readonly name: InputMaybe<StringQueryOperatorInput>;
+  readonly symbol: InputMaybe<StringQueryOperatorInput>;
+};
+
+type CountriesCurrenciesMXNSortInput = {
+  readonly name: InputMaybe<SortOrderEnum>;
+  readonly symbol: InputMaybe<SortOrderEnum>;
+};
+
+type CountriesCurrenciesNOK = {
+  readonly name: Maybe<Scalars['String']>;
+  readonly symbol: Maybe<Scalars['String']>;
+};
+
+type CountriesCurrenciesNOKFieldSelector = {
+  readonly name: InputMaybe<FieldSelectorEnum>;
+  readonly symbol: InputMaybe<FieldSelectorEnum>;
+};
+
+type CountriesCurrenciesNOKFilterInput = {
+  readonly name: InputMaybe<StringQueryOperatorInput>;
+  readonly symbol: InputMaybe<StringQueryOperatorInput>;
+};
+
+type CountriesCurrenciesNOKSortInput = {
+  readonly name: InputMaybe<SortOrderEnum>;
+  readonly symbol: InputMaybe<SortOrderEnum>;
+};
+
+type CountriesCurrenciesNZD = {
+  readonly name: Maybe<Scalars['String']>;
+  readonly symbol: Maybe<Scalars['String']>;
+};
+
+type CountriesCurrenciesNZDFieldSelector = {
+  readonly name: InputMaybe<FieldSelectorEnum>;
+  readonly symbol: InputMaybe<FieldSelectorEnum>;
+};
+
+type CountriesCurrenciesNZDFilterInput = {
+  readonly name: InputMaybe<StringQueryOperatorInput>;
+  readonly symbol: InputMaybe<StringQueryOperatorInput>;
+};
+
+type CountriesCurrenciesNZDSortInput = {
+  readonly name: InputMaybe<SortOrderEnum>;
+  readonly symbol: InputMaybe<SortOrderEnum>;
+};
+
+type CountriesCurrenciesPEN = {
+  readonly name: Maybe<Scalars['String']>;
+  readonly symbol: Maybe<Scalars['String']>;
+};
+
+type CountriesCurrenciesPENFieldSelector = {
+  readonly name: InputMaybe<FieldSelectorEnum>;
+  readonly symbol: InputMaybe<FieldSelectorEnum>;
+};
+
+type CountriesCurrenciesPENFilterInput = {
+  readonly name: InputMaybe<StringQueryOperatorInput>;
+  readonly symbol: InputMaybe<StringQueryOperatorInput>;
+};
+
+type CountriesCurrenciesPENSortInput = {
+  readonly name: InputMaybe<SortOrderEnum>;
+  readonly symbol: InputMaybe<SortOrderEnum>;
+};
+
+type CountriesCurrenciesSBD = {
+  readonly name: Maybe<Scalars['String']>;
+  readonly symbol: Maybe<Scalars['String']>;
+};
+
+type CountriesCurrenciesSBDFieldSelector = {
+  readonly name: InputMaybe<FieldSelectorEnum>;
+  readonly symbol: InputMaybe<FieldSelectorEnum>;
+};
+
+type CountriesCurrenciesSBDFilterInput = {
+  readonly name: InputMaybe<StringQueryOperatorInput>;
+  readonly symbol: InputMaybe<StringQueryOperatorInput>;
+};
+
+type CountriesCurrenciesSBDSortInput = {
+  readonly name: InputMaybe<SortOrderEnum>;
+  readonly symbol: InputMaybe<SortOrderEnum>;
+};
+
+type CountriesCurrenciesSGD = {
+  readonly name: Maybe<Scalars['String']>;
+  readonly symbol: Maybe<Scalars['String']>;
+};
+
+type CountriesCurrenciesSGDFieldSelector = {
+  readonly name: InputMaybe<FieldSelectorEnum>;
+  readonly symbol: InputMaybe<FieldSelectorEnum>;
+};
+
+type CountriesCurrenciesSGDFilterInput = {
+  readonly name: InputMaybe<StringQueryOperatorInput>;
+  readonly symbol: InputMaybe<StringQueryOperatorInput>;
+};
+
+type CountriesCurrenciesSGDSortInput = {
+  readonly name: InputMaybe<SortOrderEnum>;
+  readonly symbol: InputMaybe<SortOrderEnum>;
+};
+
+type CountriesCurrenciesSHP = {
+  readonly name: Maybe<Scalars['String']>;
+  readonly symbol: Maybe<Scalars['String']>;
+};
+
+type CountriesCurrenciesSHPFieldSelector = {
+  readonly name: InputMaybe<FieldSelectorEnum>;
+  readonly symbol: InputMaybe<FieldSelectorEnum>;
+};
+
+type CountriesCurrenciesSHPFilterInput = {
+  readonly name: InputMaybe<StringQueryOperatorInput>;
+  readonly symbol: InputMaybe<StringQueryOperatorInput>;
+};
+
+type CountriesCurrenciesSHPSortInput = {
+  readonly name: InputMaybe<SortOrderEnum>;
+  readonly symbol: InputMaybe<SortOrderEnum>;
+};
+
+type CountriesCurrenciesSLL = {
+  readonly name: Maybe<Scalars['String']>;
+  readonly symbol: Maybe<Scalars['String']>;
+};
+
+type CountriesCurrenciesSLLFieldSelector = {
+  readonly name: InputMaybe<FieldSelectorEnum>;
+  readonly symbol: InputMaybe<FieldSelectorEnum>;
+};
+
+type CountriesCurrenciesSLLFilterInput = {
+  readonly name: InputMaybe<StringQueryOperatorInput>;
+  readonly symbol: InputMaybe<StringQueryOperatorInput>;
+};
+
+type CountriesCurrenciesSLLSortInput = {
+  readonly name: InputMaybe<SortOrderEnum>;
+  readonly symbol: InputMaybe<SortOrderEnum>;
+};
+
+type CountriesCurrenciesSortInput = {
+  readonly AFN: InputMaybe<CountriesCurrenciesAFNSortInput>;
+  readonly AUD: InputMaybe<CountriesCurrenciesAUDSortInput>;
+  readonly AWG: InputMaybe<CountriesCurrenciesAWGSortInput>;
+  readonly AZN: InputMaybe<CountriesCurrenciesAZNSortInput>;
+  readonly BBD: InputMaybe<CountriesCurrenciesBBDSortInput>;
+  readonly BDT: InputMaybe<CountriesCurrenciesBDTSortInput>;
+  readonly BIF: InputMaybe<CountriesCurrenciesBIFSortInput>;
+  readonly CHF: InputMaybe<CountriesCurrenciesCHFSortInput>;
+  readonly CKD: InputMaybe<CountriesCurrenciesCKDSortInput>;
+  readonly CNY: InputMaybe<CountriesCurrenciesCNYSortInput>;
+  readonly COP: InputMaybe<CountriesCurrenciesCOPSortInput>;
+  readonly CVE: InputMaybe<CountriesCurrenciesCVESortInput>;
+  readonly DJF: InputMaybe<CountriesCurrenciesDJFSortInput>;
+  readonly DKK: InputMaybe<CountriesCurrenciesDKKSortInput>;
+  readonly DZD: InputMaybe<CountriesCurrenciesDZDSortInput>;
+  readonly EGP: InputMaybe<CountriesCurrenciesEGPSortInput>;
+  readonly EUR: InputMaybe<CountriesCurrenciesEURSortInput>;
+  readonly FOK: InputMaybe<CountriesCurrenciesFOKSortInput>;
+  readonly GBP: InputMaybe<CountriesCurrenciesGBPSortInput>;
+  readonly GGP: InputMaybe<CountriesCurrenciesGGPSortInput>;
+  readonly HUF: InputMaybe<CountriesCurrenciesHUFSortInput>;
+  readonly IDR: InputMaybe<CountriesCurrenciesIDRSortInput>;
+  readonly ILS: InputMaybe<CountriesCurrenciesILSSortInput>;
+  readonly JOD: InputMaybe<CountriesCurrenciesJODSortInput>;
+  readonly KPW: InputMaybe<CountriesCurrenciesKPWSortInput>;
+  readonly LAK: InputMaybe<CountriesCurrenciesLAKSortInput>;
+  readonly LKR: InputMaybe<CountriesCurrenciesLKRSortInput>;
+  readonly LYD: InputMaybe<CountriesCurrenciesLYDSortInput>;
+  readonly MAD: InputMaybe<CountriesCurrenciesMADSortInput>;
+  readonly MKD: InputMaybe<CountriesCurrenciesMKDSortInput>;
+  readonly MUR: InputMaybe<CountriesCurrenciesMURSortInput>;
+  readonly MXN: InputMaybe<CountriesCurrenciesMXNSortInput>;
+  readonly NOK: InputMaybe<CountriesCurrenciesNOKSortInput>;
+  readonly NZD: InputMaybe<CountriesCurrenciesNZDSortInput>;
+  readonly PEN: InputMaybe<CountriesCurrenciesPENSortInput>;
+  readonly SBD: InputMaybe<CountriesCurrenciesSBDSortInput>;
+  readonly SGD: InputMaybe<CountriesCurrenciesSGDSortInput>;
+  readonly SHP: InputMaybe<CountriesCurrenciesSHPSortInput>;
+  readonly SLL: InputMaybe<CountriesCurrenciesSLLSortInput>;
+  readonly TND: InputMaybe<CountriesCurrenciesTNDSortInput>;
+  readonly TRY: InputMaybe<CountriesCurrenciesTRYSortInput>;
+  readonly TWD: InputMaybe<CountriesCurrenciesTWDSortInput>;
+  readonly UGX: InputMaybe<CountriesCurrenciesUGXSortInput>;
+  readonly USD: InputMaybe<CountriesCurrenciesUSDSortInput>;
+  readonly UZS: InputMaybe<CountriesCurrenciesUZSSortInput>;
+  readonly XAF: InputMaybe<CountriesCurrenciesXAFSortInput>;
+  readonly XCD: InputMaybe<CountriesCurrenciesXCDSortInput>;
+  readonly XOF: InputMaybe<CountriesCurrenciesXOFSortInput>;
+  readonly XPF: InputMaybe<CountriesCurrenciesXPFSortInput>;
+  readonly YER: InputMaybe<CountriesCurrenciesYERSortInput>;
+  readonly ZAR: InputMaybe<CountriesCurrenciesZARSortInput>;
+  readonly ZMW: InputMaybe<CountriesCurrenciesZMWSortInput>;
+};
+
+type CountriesCurrenciesTND = {
+  readonly name: Maybe<Scalars['String']>;
+  readonly symbol: Maybe<Scalars['String']>;
+};
+
+type CountriesCurrenciesTNDFieldSelector = {
+  readonly name: InputMaybe<FieldSelectorEnum>;
+  readonly symbol: InputMaybe<FieldSelectorEnum>;
+};
+
+type CountriesCurrenciesTNDFilterInput = {
+  readonly name: InputMaybe<StringQueryOperatorInput>;
+  readonly symbol: InputMaybe<StringQueryOperatorInput>;
+};
+
+type CountriesCurrenciesTNDSortInput = {
+  readonly name: InputMaybe<SortOrderEnum>;
+  readonly symbol: InputMaybe<SortOrderEnum>;
+};
+
+type CountriesCurrenciesTRY = {
+  readonly name: Maybe<Scalars['String']>;
+  readonly symbol: Maybe<Scalars['String']>;
+};
+
+type CountriesCurrenciesTRYFieldSelector = {
+  readonly name: InputMaybe<FieldSelectorEnum>;
+  readonly symbol: InputMaybe<FieldSelectorEnum>;
+};
+
+type CountriesCurrenciesTRYFilterInput = {
+  readonly name: InputMaybe<StringQueryOperatorInput>;
+  readonly symbol: InputMaybe<StringQueryOperatorInput>;
+};
+
+type CountriesCurrenciesTRYSortInput = {
+  readonly name: InputMaybe<SortOrderEnum>;
+  readonly symbol: InputMaybe<SortOrderEnum>;
+};
+
+type CountriesCurrenciesTWD = {
+  readonly name: Maybe<Scalars['String']>;
+  readonly symbol: Maybe<Scalars['String']>;
+};
+
+type CountriesCurrenciesTWDFieldSelector = {
+  readonly name: InputMaybe<FieldSelectorEnum>;
+  readonly symbol: InputMaybe<FieldSelectorEnum>;
+};
+
+type CountriesCurrenciesTWDFilterInput = {
+  readonly name: InputMaybe<StringQueryOperatorInput>;
+  readonly symbol: InputMaybe<StringQueryOperatorInput>;
+};
+
+type CountriesCurrenciesTWDSortInput = {
+  readonly name: InputMaybe<SortOrderEnum>;
+  readonly symbol: InputMaybe<SortOrderEnum>;
+};
+
+type CountriesCurrenciesUGX = {
+  readonly name: Maybe<Scalars['String']>;
+  readonly symbol: Maybe<Scalars['String']>;
+};
+
+type CountriesCurrenciesUGXFieldSelector = {
+  readonly name: InputMaybe<FieldSelectorEnum>;
+  readonly symbol: InputMaybe<FieldSelectorEnum>;
+};
+
+type CountriesCurrenciesUGXFilterInput = {
+  readonly name: InputMaybe<StringQueryOperatorInput>;
+  readonly symbol: InputMaybe<StringQueryOperatorInput>;
+};
+
+type CountriesCurrenciesUGXSortInput = {
+  readonly name: InputMaybe<SortOrderEnum>;
+  readonly symbol: InputMaybe<SortOrderEnum>;
+};
+
+type CountriesCurrenciesUSD = {
+  readonly name: Maybe<Scalars['String']>;
+  readonly symbol: Maybe<Scalars['String']>;
+};
+
+type CountriesCurrenciesUSDFieldSelector = {
+  readonly name: InputMaybe<FieldSelectorEnum>;
+  readonly symbol: InputMaybe<FieldSelectorEnum>;
+};
+
+type CountriesCurrenciesUSDFilterInput = {
+  readonly name: InputMaybe<StringQueryOperatorInput>;
+  readonly symbol: InputMaybe<StringQueryOperatorInput>;
+};
+
+type CountriesCurrenciesUSDSortInput = {
+  readonly name: InputMaybe<SortOrderEnum>;
+  readonly symbol: InputMaybe<SortOrderEnum>;
+};
+
+type CountriesCurrenciesUZS = {
+  readonly name: Maybe<Scalars['String']>;
+  readonly symbol: Maybe<Scalars['String']>;
+};
+
+type CountriesCurrenciesUZSFieldSelector = {
+  readonly name: InputMaybe<FieldSelectorEnum>;
+  readonly symbol: InputMaybe<FieldSelectorEnum>;
+};
+
+type CountriesCurrenciesUZSFilterInput = {
+  readonly name: InputMaybe<StringQueryOperatorInput>;
+  readonly symbol: InputMaybe<StringQueryOperatorInput>;
+};
+
+type CountriesCurrenciesUZSSortInput = {
+  readonly name: InputMaybe<SortOrderEnum>;
+  readonly symbol: InputMaybe<SortOrderEnum>;
+};
+
+type CountriesCurrenciesXAF = {
+  readonly name: Maybe<Scalars['String']>;
+  readonly symbol: Maybe<Scalars['String']>;
+};
+
+type CountriesCurrenciesXAFFieldSelector = {
+  readonly name: InputMaybe<FieldSelectorEnum>;
+  readonly symbol: InputMaybe<FieldSelectorEnum>;
+};
+
+type CountriesCurrenciesXAFFilterInput = {
+  readonly name: InputMaybe<StringQueryOperatorInput>;
+  readonly symbol: InputMaybe<StringQueryOperatorInput>;
+};
+
+type CountriesCurrenciesXAFSortInput = {
+  readonly name: InputMaybe<SortOrderEnum>;
+  readonly symbol: InputMaybe<SortOrderEnum>;
+};
+
+type CountriesCurrenciesXCD = {
+  readonly name: Maybe<Scalars['String']>;
+  readonly symbol: Maybe<Scalars['String']>;
+};
+
+type CountriesCurrenciesXCDFieldSelector = {
+  readonly name: InputMaybe<FieldSelectorEnum>;
+  readonly symbol: InputMaybe<FieldSelectorEnum>;
+};
+
+type CountriesCurrenciesXCDFilterInput = {
+  readonly name: InputMaybe<StringQueryOperatorInput>;
+  readonly symbol: InputMaybe<StringQueryOperatorInput>;
+};
+
+type CountriesCurrenciesXCDSortInput = {
+  readonly name: InputMaybe<SortOrderEnum>;
+  readonly symbol: InputMaybe<SortOrderEnum>;
+};
+
+type CountriesCurrenciesXOF = {
+  readonly name: Maybe<Scalars['String']>;
+  readonly symbol: Maybe<Scalars['String']>;
+};
+
+type CountriesCurrenciesXOFFieldSelector = {
+  readonly name: InputMaybe<FieldSelectorEnum>;
+  readonly symbol: InputMaybe<FieldSelectorEnum>;
+};
+
+type CountriesCurrenciesXOFFilterInput = {
+  readonly name: InputMaybe<StringQueryOperatorInput>;
+  readonly symbol: InputMaybe<StringQueryOperatorInput>;
+};
+
+type CountriesCurrenciesXOFSortInput = {
+  readonly name: InputMaybe<SortOrderEnum>;
+  readonly symbol: InputMaybe<SortOrderEnum>;
+};
+
+type CountriesCurrenciesXPF = {
+  readonly name: Maybe<Scalars['String']>;
+  readonly symbol: Maybe<Scalars['String']>;
+};
+
+type CountriesCurrenciesXPFFieldSelector = {
+  readonly name: InputMaybe<FieldSelectorEnum>;
+  readonly symbol: InputMaybe<FieldSelectorEnum>;
+};
+
+type CountriesCurrenciesXPFFilterInput = {
+  readonly name: InputMaybe<StringQueryOperatorInput>;
+  readonly symbol: InputMaybe<StringQueryOperatorInput>;
+};
+
+type CountriesCurrenciesXPFSortInput = {
+  readonly name: InputMaybe<SortOrderEnum>;
+  readonly symbol: InputMaybe<SortOrderEnum>;
+};
+
+type CountriesCurrenciesYER = {
+  readonly name: Maybe<Scalars['String']>;
+  readonly symbol: Maybe<Scalars['String']>;
+};
+
+type CountriesCurrenciesYERFieldSelector = {
+  readonly name: InputMaybe<FieldSelectorEnum>;
+  readonly symbol: InputMaybe<FieldSelectorEnum>;
+};
+
+type CountriesCurrenciesYERFilterInput = {
+  readonly name: InputMaybe<StringQueryOperatorInput>;
+  readonly symbol: InputMaybe<StringQueryOperatorInput>;
+};
+
+type CountriesCurrenciesYERSortInput = {
+  readonly name: InputMaybe<SortOrderEnum>;
+  readonly symbol: InputMaybe<SortOrderEnum>;
+};
+
+type CountriesCurrenciesZAR = {
+  readonly name: Maybe<Scalars['String']>;
+  readonly symbol: Maybe<Scalars['String']>;
+};
+
+type CountriesCurrenciesZARFieldSelector = {
+  readonly name: InputMaybe<FieldSelectorEnum>;
+  readonly symbol: InputMaybe<FieldSelectorEnum>;
+};
+
+type CountriesCurrenciesZARFilterInput = {
+  readonly name: InputMaybe<StringQueryOperatorInput>;
+  readonly symbol: InputMaybe<StringQueryOperatorInput>;
+};
+
+type CountriesCurrenciesZARSortInput = {
+  readonly name: InputMaybe<SortOrderEnum>;
+  readonly symbol: InputMaybe<SortOrderEnum>;
+};
+
+type CountriesCurrenciesZMW = {
+  readonly name: Maybe<Scalars['String']>;
+  readonly symbol: Maybe<Scalars['String']>;
+};
+
+type CountriesCurrenciesZMWFieldSelector = {
+  readonly name: InputMaybe<FieldSelectorEnum>;
+  readonly symbol: InputMaybe<FieldSelectorEnum>;
+};
+
+type CountriesCurrenciesZMWFilterInput = {
+  readonly name: InputMaybe<StringQueryOperatorInput>;
+  readonly symbol: InputMaybe<StringQueryOperatorInput>;
+};
+
+type CountriesCurrenciesZMWSortInput = {
+  readonly name: InputMaybe<SortOrderEnum>;
+  readonly symbol: InputMaybe<SortOrderEnum>;
+};
+
+type CountriesEdge = {
+  readonly next: Maybe<Countries>;
+  readonly node: Countries;
+  readonly previous: Maybe<Countries>;
+};
+
+type CountriesFieldSelector = {
+  readonly capital: InputMaybe<FieldSelectorEnum>;
+  readonly cca3: InputMaybe<FieldSelectorEnum>;
+  readonly children: InputMaybe<NodeFieldSelector>;
+  readonly currencies: InputMaybe<CountriesCurrenciesFieldSelector>;
+  readonly flag: InputMaybe<FieldSelectorEnum>;
+  readonly flags: InputMaybe<CountriesFlagsFieldSelector>;
+  readonly id: InputMaybe<FieldSelectorEnum>;
+  readonly internal: InputMaybe<InternalFieldSelector>;
+  readonly languages: InputMaybe<FieldSelectorEnum>;
+  readonly name: InputMaybe<FieldSelectorEnum>;
+  readonly parent: InputMaybe<NodeFieldSelector>;
+  readonly region: InputMaybe<FieldSelectorEnum>;
+  readonly timezones: InputMaybe<FieldSelectorEnum>;
+};
+
+type CountriesFilterInput = {
+  readonly capital: InputMaybe<StringQueryOperatorInput>;
+  readonly cca3: InputMaybe<StringQueryOperatorInput>;
+  readonly children: InputMaybe<NodeFilterListInput>;
+  readonly currencies: InputMaybe<CountriesCurrenciesFilterInput>;
+  readonly flag: InputMaybe<StringQueryOperatorInput>;
+  readonly flags: InputMaybe<CountriesFlagsFilterInput>;
+  readonly id: InputMaybe<StringQueryOperatorInput>;
+  readonly internal: InputMaybe<InternalFilterInput>;
+  readonly languages: InputMaybe<StringQueryOperatorInput>;
+  readonly name: InputMaybe<StringQueryOperatorInput>;
+  readonly parent: InputMaybe<NodeFilterInput>;
+  readonly region: InputMaybe<StringQueryOperatorInput>;
+  readonly timezones: InputMaybe<StringQueryOperatorInput>;
+};
+
+type CountriesFlags = {
+  readonly alt: Maybe<Scalars['String']>;
+  readonly png: Maybe<Scalars['String']>;
+  readonly svg: Maybe<Scalars['String']>;
+};
+
+type CountriesFlagsFieldSelector = {
+  readonly alt: InputMaybe<FieldSelectorEnum>;
+  readonly png: InputMaybe<FieldSelectorEnum>;
+  readonly svg: InputMaybe<FieldSelectorEnum>;
+};
+
+type CountriesFlagsFilterInput = {
+  readonly alt: InputMaybe<StringQueryOperatorInput>;
+  readonly png: InputMaybe<StringQueryOperatorInput>;
+  readonly svg: InputMaybe<StringQueryOperatorInput>;
+};
+
+type CountriesFlagsSortInput = {
+  readonly alt: InputMaybe<SortOrderEnum>;
+  readonly png: InputMaybe<SortOrderEnum>;
+  readonly svg: InputMaybe<SortOrderEnum>;
+};
+
+type CountriesGroupConnection = {
+  readonly distinct: ReadonlyArray<Scalars['String']>;
+  readonly edges: ReadonlyArray<CountriesEdge>;
+  readonly field: Scalars['String'];
+  readonly fieldValue: Maybe<Scalars['String']>;
+  readonly group: ReadonlyArray<CountriesGroupConnection>;
+  readonly max: Maybe<Scalars['Float']>;
+  readonly min: Maybe<Scalars['Float']>;
+  readonly nodes: ReadonlyArray<Countries>;
+  readonly pageInfo: PageInfo;
+  readonly sum: Maybe<Scalars['Float']>;
+  readonly totalCount: Scalars['Int'];
+};
+
+
+type CountriesGroupConnection_distinctArgs = {
+  field: CountriesFieldSelector;
+};
+
+
+type CountriesGroupConnection_groupArgs = {
+  field: CountriesFieldSelector;
+  limit: InputMaybe<Scalars['Int']>;
+  skip: InputMaybe<Scalars['Int']>;
+};
+
+
+type CountriesGroupConnection_maxArgs = {
+  field: CountriesFieldSelector;
+};
+
+
+type CountriesGroupConnection_minArgs = {
+  field: CountriesFieldSelector;
+};
+
+
+type CountriesGroupConnection_sumArgs = {
+  field: CountriesFieldSelector;
+};
+
+type CountriesSortInput = {
+  readonly capital: InputMaybe<SortOrderEnum>;
+  readonly cca3: InputMaybe<SortOrderEnum>;
+  readonly children: InputMaybe<NodeSortInput>;
+  readonly currencies: InputMaybe<CountriesCurrenciesSortInput>;
+  readonly flag: InputMaybe<SortOrderEnum>;
+  readonly flags: InputMaybe<CountriesFlagsSortInput>;
+  readonly id: InputMaybe<SortOrderEnum>;
+  readonly internal: InputMaybe<InternalSortInput>;
+  readonly languages: InputMaybe<SortOrderEnum>;
+  readonly name: InputMaybe<SortOrderEnum>;
+  readonly parent: InputMaybe<NodeSortInput>;
+  readonly region: InputMaybe<SortOrderEnum>;
+  readonly timezones: InputMaybe<SortOrderEnum>;
 };
 
 type DateQueryOperatorInput = {
@@ -343,6 +1791,12 @@ type DirectorySortInput = {
   readonly uid: InputMaybe<SortOrderEnum>;
 };
 
+type DuotoneGradient = {
+  readonly highlight: Scalars['String'];
+  readonly opacity: InputMaybe<Scalars['Int']>;
+  readonly shadow: Scalars['String'];
+};
+
 type FieldSelectorEnum =
   | 'SELECT';
 
@@ -358,7 +1812,11 @@ type File = Node & {
   /** @deprecated Use `birthTime` instead */
   readonly birthtimeMs: Maybe<Scalars['Float']>;
   readonly changeTime: Scalars['Date'];
+  /** Returns the first child node of type ImageSharp or null if there are no children of given type on this node */
+  readonly childImageSharp: Maybe<ImageSharp>;
   readonly children: ReadonlyArray<Node>;
+  /** Returns all children nodes filtered by type ImageSharp */
+  readonly childrenImageSharp: Maybe<ReadonlyArray<Maybe<ImageSharp>>>;
   readonly ctime: Scalars['Date'];
   readonly ctimeMs: Scalars['Float'];
   readonly dev: Scalars['Int'];
@@ -497,7 +1955,9 @@ type FileFieldSelector = {
   readonly birthtime: InputMaybe<FieldSelectorEnum>;
   readonly birthtimeMs: InputMaybe<FieldSelectorEnum>;
   readonly changeTime: InputMaybe<FieldSelectorEnum>;
+  readonly childImageSharp: InputMaybe<ImageSharpFieldSelector>;
   readonly children: InputMaybe<NodeFieldSelector>;
+  readonly childrenImageSharp: InputMaybe<ImageSharpFieldSelector>;
   readonly ctime: InputMaybe<FieldSelectorEnum>;
   readonly ctimeMs: InputMaybe<FieldSelectorEnum>;
   readonly dev: InputMaybe<FieldSelectorEnum>;
@@ -535,7 +1995,9 @@ type FileFilterInput = {
   readonly birthtime: InputMaybe<DateQueryOperatorInput>;
   readonly birthtimeMs: InputMaybe<FloatQueryOperatorInput>;
   readonly changeTime: InputMaybe<DateQueryOperatorInput>;
+  readonly childImageSharp: InputMaybe<ImageSharpFilterInput>;
   readonly children: InputMaybe<NodeFilterListInput>;
+  readonly childrenImageSharp: InputMaybe<ImageSharpFilterListInput>;
   readonly ctime: InputMaybe<DateQueryOperatorInput>;
   readonly ctimeMs: InputMaybe<FloatQueryOperatorInput>;
   readonly dev: InputMaybe<IntQueryOperatorInput>;
@@ -614,7 +2076,9 @@ type FileSortInput = {
   readonly birthtime: InputMaybe<SortOrderEnum>;
   readonly birthtimeMs: InputMaybe<SortOrderEnum>;
   readonly changeTime: InputMaybe<SortOrderEnum>;
+  readonly childImageSharp: InputMaybe<ImageSharpSortInput>;
   readonly children: InputMaybe<NodeSortInput>;
+  readonly childrenImageSharp: InputMaybe<ImageSharpSortInput>;
   readonly ctime: InputMaybe<SortOrderEnum>;
   readonly ctimeMs: InputMaybe<SortOrderEnum>;
   readonly dev: InputMaybe<SortOrderEnum>;
@@ -651,6 +2115,474 @@ type FloatQueryOperatorInput = {
   readonly lte: InputMaybe<Scalars['Float']>;
   readonly ne: InputMaybe<Scalars['Float']>;
   readonly nin: InputMaybe<ReadonlyArray<InputMaybe<Scalars['Float']>>>;
+};
+
+type GatsbyImageDataQueryOperatorInput = {
+  readonly eq: InputMaybe<Scalars['GatsbyImageData']>;
+  readonly in: InputMaybe<ReadonlyArray<InputMaybe<Scalars['GatsbyImageData']>>>;
+  readonly ne: InputMaybe<Scalars['GatsbyImageData']>;
+  readonly nin: InputMaybe<ReadonlyArray<InputMaybe<Scalars['GatsbyImageData']>>>;
+};
+
+type GatsbyImageFormat =
+  | 'auto'
+  | 'avif'
+  | 'jpg'
+  | ''
+  | 'png'
+  | 'webp';
+
+type GatsbyImageLayout =
+  | 'constrained'
+  | 'fixed'
+  | 'fullWidth';
+
+type GatsbyImagePlaceholder =
+  | 'blurred'
+  | 'dominantColor'
+  | 'none'
+  | 'tracedSVG';
+
+type ImageCropFocus =
+  | 17
+  | 0
+  | 2
+  | 16
+  | 1
+  | 5
+  | 8
+  | 3
+  | 6
+  | 7
+  | 4;
+
+type ImageFit =
+  | 'contain'
+  | 'cover'
+  | 'fill'
+  | 'inside'
+  | 'outside';
+
+type ImageFormat =
+  | ''
+  | 'avif'
+  | 'jpg'
+  | ''
+  | 'png'
+  | 'webp';
+
+type ImageLayout =
+  | 'constrained'
+  | 'fixed'
+  | 'fullWidth';
+
+type ImagePlaceholder =
+  | 'blurred'
+  | 'dominantColor'
+  | 'none'
+  | 'tracedSVG';
+
+type ImageSharp = Node & {
+  readonly children: ReadonlyArray<Node>;
+  readonly fixed: Maybe<ImageSharpFixed>;
+  readonly fluid: Maybe<ImageSharpFluid>;
+  readonly gatsbyImageData: Scalars['GatsbyImageData'];
+  readonly id: Scalars['ID'];
+  readonly internal: Internal;
+  readonly original: Maybe<ImageSharpOriginal>;
+  readonly parent: Maybe<Node>;
+  readonly resize: Maybe<ImageSharpResize>;
+};
+
+
+type ImageSharp_fixedArgs = {
+  background?: InputMaybe<Scalars['String']>;
+  base64Width: InputMaybe<Scalars['Int']>;
+  cropFocus?: InputMaybe<ImageCropFocus>;
+  duotone: InputMaybe<DuotoneGradient>;
+  fit?: InputMaybe<ImageFit>;
+  grayscale?: InputMaybe<Scalars['Boolean']>;
+  height: InputMaybe<Scalars['Int']>;
+  jpegProgressive?: InputMaybe<Scalars['Boolean']>;
+  jpegQuality: InputMaybe<Scalars['Int']>;
+  pngCompressionSpeed?: InputMaybe<Scalars['Int']>;
+  pngQuality: InputMaybe<Scalars['Int']>;
+  quality: InputMaybe<Scalars['Int']>;
+  rotate?: InputMaybe<Scalars['Int']>;
+  toFormat?: InputMaybe<ImageFormat>;
+  toFormatBase64?: InputMaybe<ImageFormat>;
+  traceSVG: InputMaybe<Potrace>;
+  trim?: InputMaybe<Scalars['Float']>;
+  webpQuality: InputMaybe<Scalars['Int']>;
+  width: InputMaybe<Scalars['Int']>;
+};
+
+
+type ImageSharp_fluidArgs = {
+  background?: InputMaybe<Scalars['String']>;
+  base64Width: InputMaybe<Scalars['Int']>;
+  cropFocus?: InputMaybe<ImageCropFocus>;
+  duotone: InputMaybe<DuotoneGradient>;
+  fit?: InputMaybe<ImageFit>;
+  grayscale?: InputMaybe<Scalars['Boolean']>;
+  jpegProgressive?: InputMaybe<Scalars['Boolean']>;
+  jpegQuality: InputMaybe<Scalars['Int']>;
+  maxHeight: InputMaybe<Scalars['Int']>;
+  maxWidth: InputMaybe<Scalars['Int']>;
+  pngCompressionSpeed?: InputMaybe<Scalars['Int']>;
+  pngQuality: InputMaybe<Scalars['Int']>;
+  quality: InputMaybe<Scalars['Int']>;
+  rotate?: InputMaybe<Scalars['Int']>;
+  sizes?: InputMaybe<Scalars['String']>;
+  srcSetBreakpoints?: InputMaybe<ReadonlyArray<InputMaybe<Scalars['Int']>>>;
+  toFormat?: InputMaybe<ImageFormat>;
+  toFormatBase64?: InputMaybe<ImageFormat>;
+  traceSVG: InputMaybe<Potrace>;
+  trim?: InputMaybe<Scalars['Float']>;
+  webpQuality: InputMaybe<Scalars['Int']>;
+};
+
+
+type ImageSharp_gatsbyImageDataArgs = {
+  aspectRatio: InputMaybe<Scalars['Float']>;
+  avifOptions: InputMaybe<AVIFOptions>;
+  backgroundColor: InputMaybe<Scalars['String']>;
+  blurredOptions: InputMaybe<BlurredOptions>;
+  breakpoints: InputMaybe<ReadonlyArray<InputMaybe<Scalars['Int']>>>;
+  formats: InputMaybe<ReadonlyArray<InputMaybe<ImageFormat>>>;
+  height: InputMaybe<Scalars['Int']>;
+  jpgOptions: InputMaybe<JPGOptions>;
+  layout?: InputMaybe<ImageLayout>;
+  outputPixelDensities: InputMaybe<ReadonlyArray<InputMaybe<Scalars['Float']>>>;
+  placeholder: InputMaybe<ImagePlaceholder>;
+  pngOptions: InputMaybe<PNGOptions>;
+  quality: InputMaybe<Scalars['Int']>;
+  sizes: InputMaybe<Scalars['String']>;
+  tracedSVGOptions: InputMaybe<Potrace>;
+  transformOptions: InputMaybe<TransformOptions>;
+  webpOptions: InputMaybe<WebPOptions>;
+  width: InputMaybe<Scalars['Int']>;
+};
+
+
+type ImageSharp_resizeArgs = {
+  background?: InputMaybe<Scalars['String']>;
+  base64?: InputMaybe<Scalars['Boolean']>;
+  cropFocus?: InputMaybe<ImageCropFocus>;
+  duotone: InputMaybe<DuotoneGradient>;
+  fit?: InputMaybe<ImageFit>;
+  grayscale?: InputMaybe<Scalars['Boolean']>;
+  height: InputMaybe<Scalars['Int']>;
+  jpegProgressive?: InputMaybe<Scalars['Boolean']>;
+  jpegQuality: InputMaybe<Scalars['Int']>;
+  pngCompressionLevel?: InputMaybe<Scalars['Int']>;
+  pngCompressionSpeed?: InputMaybe<Scalars['Int']>;
+  pngQuality: InputMaybe<Scalars['Int']>;
+  quality: InputMaybe<Scalars['Int']>;
+  rotate?: InputMaybe<Scalars['Int']>;
+  toFormat?: InputMaybe<ImageFormat>;
+  traceSVG: InputMaybe<Potrace>;
+  trim?: InputMaybe<Scalars['Float']>;
+  webpQuality: InputMaybe<Scalars['Int']>;
+  width: InputMaybe<Scalars['Int']>;
+};
+
+type ImageSharpConnection = {
+  readonly distinct: ReadonlyArray<Scalars['String']>;
+  readonly edges: ReadonlyArray<ImageSharpEdge>;
+  readonly group: ReadonlyArray<ImageSharpGroupConnection>;
+  readonly max: Maybe<Scalars['Float']>;
+  readonly min: Maybe<Scalars['Float']>;
+  readonly nodes: ReadonlyArray<ImageSharp>;
+  readonly pageInfo: PageInfo;
+  readonly sum: Maybe<Scalars['Float']>;
+  readonly totalCount: Scalars['Int'];
+};
+
+
+type ImageSharpConnection_distinctArgs = {
+  field: ImageSharpFieldSelector;
+};
+
+
+type ImageSharpConnection_groupArgs = {
+  field: ImageSharpFieldSelector;
+  limit: InputMaybe<Scalars['Int']>;
+  skip: InputMaybe<Scalars['Int']>;
+};
+
+
+type ImageSharpConnection_maxArgs = {
+  field: ImageSharpFieldSelector;
+};
+
+
+type ImageSharpConnection_minArgs = {
+  field: ImageSharpFieldSelector;
+};
+
+
+type ImageSharpConnection_sumArgs = {
+  field: ImageSharpFieldSelector;
+};
+
+type ImageSharpEdge = {
+  readonly next: Maybe<ImageSharp>;
+  readonly node: ImageSharp;
+  readonly previous: Maybe<ImageSharp>;
+};
+
+type ImageSharpFieldSelector = {
+  readonly children: InputMaybe<NodeFieldSelector>;
+  readonly fixed: InputMaybe<ImageSharpFixedFieldSelector>;
+  readonly fluid: InputMaybe<ImageSharpFluidFieldSelector>;
+  readonly gatsbyImageData: InputMaybe<FieldSelectorEnum>;
+  readonly id: InputMaybe<FieldSelectorEnum>;
+  readonly internal: InputMaybe<InternalFieldSelector>;
+  readonly original: InputMaybe<ImageSharpOriginalFieldSelector>;
+  readonly parent: InputMaybe<NodeFieldSelector>;
+  readonly resize: InputMaybe<ImageSharpResizeFieldSelector>;
+};
+
+type ImageSharpFilterInput = {
+  readonly children: InputMaybe<NodeFilterListInput>;
+  readonly fixed: InputMaybe<ImageSharpFixedFilterInput>;
+  readonly fluid: InputMaybe<ImageSharpFluidFilterInput>;
+  readonly gatsbyImageData: InputMaybe<GatsbyImageDataQueryOperatorInput>;
+  readonly id: InputMaybe<StringQueryOperatorInput>;
+  readonly internal: InputMaybe<InternalFilterInput>;
+  readonly original: InputMaybe<ImageSharpOriginalFilterInput>;
+  readonly parent: InputMaybe<NodeFilterInput>;
+  readonly resize: InputMaybe<ImageSharpResizeFilterInput>;
+};
+
+type ImageSharpFilterListInput = {
+  readonly elemMatch: InputMaybe<ImageSharpFilterInput>;
+};
+
+type ImageSharpFixed = {
+  readonly aspectRatio: Maybe<Scalars['Float']>;
+  readonly base64: Maybe<Scalars['String']>;
+  readonly height: Scalars['Float'];
+  readonly originalName: Maybe<Scalars['String']>;
+  readonly src: Scalars['String'];
+  readonly srcSet: Scalars['String'];
+  readonly srcSetWebp: Maybe<Scalars['String']>;
+  readonly srcWebp: Maybe<Scalars['String']>;
+  readonly tracedSVG: Maybe<Scalars['String']>;
+  readonly width: Scalars['Float'];
+};
+
+type ImageSharpFixedFieldSelector = {
+  readonly aspectRatio: InputMaybe<FieldSelectorEnum>;
+  readonly base64: InputMaybe<FieldSelectorEnum>;
+  readonly height: InputMaybe<FieldSelectorEnum>;
+  readonly originalName: InputMaybe<FieldSelectorEnum>;
+  readonly src: InputMaybe<FieldSelectorEnum>;
+  readonly srcSet: InputMaybe<FieldSelectorEnum>;
+  readonly srcSetWebp: InputMaybe<FieldSelectorEnum>;
+  readonly srcWebp: InputMaybe<FieldSelectorEnum>;
+  readonly tracedSVG: InputMaybe<FieldSelectorEnum>;
+  readonly width: InputMaybe<FieldSelectorEnum>;
+};
+
+type ImageSharpFixedFilterInput = {
+  readonly aspectRatio: InputMaybe<FloatQueryOperatorInput>;
+  readonly base64: InputMaybe<StringQueryOperatorInput>;
+  readonly height: InputMaybe<FloatQueryOperatorInput>;
+  readonly originalName: InputMaybe<StringQueryOperatorInput>;
+  readonly src: InputMaybe<StringQueryOperatorInput>;
+  readonly srcSet: InputMaybe<StringQueryOperatorInput>;
+  readonly srcSetWebp: InputMaybe<StringQueryOperatorInput>;
+  readonly srcWebp: InputMaybe<StringQueryOperatorInput>;
+  readonly tracedSVG: InputMaybe<StringQueryOperatorInput>;
+  readonly width: InputMaybe<FloatQueryOperatorInput>;
+};
+
+type ImageSharpFixedSortInput = {
+  readonly aspectRatio: InputMaybe<SortOrderEnum>;
+  readonly base64: InputMaybe<SortOrderEnum>;
+  readonly height: InputMaybe<SortOrderEnum>;
+  readonly originalName: InputMaybe<SortOrderEnum>;
+  readonly src: InputMaybe<SortOrderEnum>;
+  readonly srcSet: InputMaybe<SortOrderEnum>;
+  readonly srcSetWebp: InputMaybe<SortOrderEnum>;
+  readonly srcWebp: InputMaybe<SortOrderEnum>;
+  readonly tracedSVG: InputMaybe<SortOrderEnum>;
+  readonly width: InputMaybe<SortOrderEnum>;
+};
+
+type ImageSharpFluid = {
+  readonly aspectRatio: Scalars['Float'];
+  readonly base64: Maybe<Scalars['String']>;
+  readonly originalImg: Maybe<Scalars['String']>;
+  readonly originalName: Maybe<Scalars['String']>;
+  readonly presentationHeight: Scalars['Int'];
+  readonly presentationWidth: Scalars['Int'];
+  readonly sizes: Scalars['String'];
+  readonly src: Scalars['String'];
+  readonly srcSet: Scalars['String'];
+  readonly srcSetWebp: Maybe<Scalars['String']>;
+  readonly srcWebp: Maybe<Scalars['String']>;
+  readonly tracedSVG: Maybe<Scalars['String']>;
+};
+
+type ImageSharpFluidFieldSelector = {
+  readonly aspectRatio: InputMaybe<FieldSelectorEnum>;
+  readonly base64: InputMaybe<FieldSelectorEnum>;
+  readonly originalImg: InputMaybe<FieldSelectorEnum>;
+  readonly originalName: InputMaybe<FieldSelectorEnum>;
+  readonly presentationHeight: InputMaybe<FieldSelectorEnum>;
+  readonly presentationWidth: InputMaybe<FieldSelectorEnum>;
+  readonly sizes: InputMaybe<FieldSelectorEnum>;
+  readonly src: InputMaybe<FieldSelectorEnum>;
+  readonly srcSet: InputMaybe<FieldSelectorEnum>;
+  readonly srcSetWebp: InputMaybe<FieldSelectorEnum>;
+  readonly srcWebp: InputMaybe<FieldSelectorEnum>;
+  readonly tracedSVG: InputMaybe<FieldSelectorEnum>;
+};
+
+type ImageSharpFluidFilterInput = {
+  readonly aspectRatio: InputMaybe<FloatQueryOperatorInput>;
+  readonly base64: InputMaybe<StringQueryOperatorInput>;
+  readonly originalImg: InputMaybe<StringQueryOperatorInput>;
+  readonly originalName: InputMaybe<StringQueryOperatorInput>;
+  readonly presentationHeight: InputMaybe<IntQueryOperatorInput>;
+  readonly presentationWidth: InputMaybe<IntQueryOperatorInput>;
+  readonly sizes: InputMaybe<StringQueryOperatorInput>;
+  readonly src: InputMaybe<StringQueryOperatorInput>;
+  readonly srcSet: InputMaybe<StringQueryOperatorInput>;
+  readonly srcSetWebp: InputMaybe<StringQueryOperatorInput>;
+  readonly srcWebp: InputMaybe<StringQueryOperatorInput>;
+  readonly tracedSVG: InputMaybe<StringQueryOperatorInput>;
+};
+
+type ImageSharpFluidSortInput = {
+  readonly aspectRatio: InputMaybe<SortOrderEnum>;
+  readonly base64: InputMaybe<SortOrderEnum>;
+  readonly originalImg: InputMaybe<SortOrderEnum>;
+  readonly originalName: InputMaybe<SortOrderEnum>;
+  readonly presentationHeight: InputMaybe<SortOrderEnum>;
+  readonly presentationWidth: InputMaybe<SortOrderEnum>;
+  readonly sizes: InputMaybe<SortOrderEnum>;
+  readonly src: InputMaybe<SortOrderEnum>;
+  readonly srcSet: InputMaybe<SortOrderEnum>;
+  readonly srcSetWebp: InputMaybe<SortOrderEnum>;
+  readonly srcWebp: InputMaybe<SortOrderEnum>;
+  readonly tracedSVG: InputMaybe<SortOrderEnum>;
+};
+
+type ImageSharpGroupConnection = {
+  readonly distinct: ReadonlyArray<Scalars['String']>;
+  readonly edges: ReadonlyArray<ImageSharpEdge>;
+  readonly field: Scalars['String'];
+  readonly fieldValue: Maybe<Scalars['String']>;
+  readonly group: ReadonlyArray<ImageSharpGroupConnection>;
+  readonly max: Maybe<Scalars['Float']>;
+  readonly min: Maybe<Scalars['Float']>;
+  readonly nodes: ReadonlyArray<ImageSharp>;
+  readonly pageInfo: PageInfo;
+  readonly sum: Maybe<Scalars['Float']>;
+  readonly totalCount: Scalars['Int'];
+};
+
+
+type ImageSharpGroupConnection_distinctArgs = {
+  field: ImageSharpFieldSelector;
+};
+
+
+type ImageSharpGroupConnection_groupArgs = {
+  field: ImageSharpFieldSelector;
+  limit: InputMaybe<Scalars['Int']>;
+  skip: InputMaybe<Scalars['Int']>;
+};
+
+
+type ImageSharpGroupConnection_maxArgs = {
+  field: ImageSharpFieldSelector;
+};
+
+
+type ImageSharpGroupConnection_minArgs = {
+  field: ImageSharpFieldSelector;
+};
+
+
+type ImageSharpGroupConnection_sumArgs = {
+  field: ImageSharpFieldSelector;
+};
+
+type ImageSharpOriginal = {
+  readonly height: Maybe<Scalars['Float']>;
+  readonly src: Maybe<Scalars['String']>;
+  readonly width: Maybe<Scalars['Float']>;
+};
+
+type ImageSharpOriginalFieldSelector = {
+  readonly height: InputMaybe<FieldSelectorEnum>;
+  readonly src: InputMaybe<FieldSelectorEnum>;
+  readonly width: InputMaybe<FieldSelectorEnum>;
+};
+
+type ImageSharpOriginalFilterInput = {
+  readonly height: InputMaybe<FloatQueryOperatorInput>;
+  readonly src: InputMaybe<StringQueryOperatorInput>;
+  readonly width: InputMaybe<FloatQueryOperatorInput>;
+};
+
+type ImageSharpOriginalSortInput = {
+  readonly height: InputMaybe<SortOrderEnum>;
+  readonly src: InputMaybe<SortOrderEnum>;
+  readonly width: InputMaybe<SortOrderEnum>;
+};
+
+type ImageSharpResize = {
+  readonly aspectRatio: Maybe<Scalars['Float']>;
+  readonly height: Maybe<Scalars['Int']>;
+  readonly originalName: Maybe<Scalars['String']>;
+  readonly src: Maybe<Scalars['String']>;
+  readonly tracedSVG: Maybe<Scalars['String']>;
+  readonly width: Maybe<Scalars['Int']>;
+};
+
+type ImageSharpResizeFieldSelector = {
+  readonly aspectRatio: InputMaybe<FieldSelectorEnum>;
+  readonly height: InputMaybe<FieldSelectorEnum>;
+  readonly originalName: InputMaybe<FieldSelectorEnum>;
+  readonly src: InputMaybe<FieldSelectorEnum>;
+  readonly tracedSVG: InputMaybe<FieldSelectorEnum>;
+  readonly width: InputMaybe<FieldSelectorEnum>;
+};
+
+type ImageSharpResizeFilterInput = {
+  readonly aspectRatio: InputMaybe<FloatQueryOperatorInput>;
+  readonly height: InputMaybe<IntQueryOperatorInput>;
+  readonly originalName: InputMaybe<StringQueryOperatorInput>;
+  readonly src: InputMaybe<StringQueryOperatorInput>;
+  readonly tracedSVG: InputMaybe<StringQueryOperatorInput>;
+  readonly width: InputMaybe<IntQueryOperatorInput>;
+};
+
+type ImageSharpResizeSortInput = {
+  readonly aspectRatio: InputMaybe<SortOrderEnum>;
+  readonly height: InputMaybe<SortOrderEnum>;
+  readonly originalName: InputMaybe<SortOrderEnum>;
+  readonly src: InputMaybe<SortOrderEnum>;
+  readonly tracedSVG: InputMaybe<SortOrderEnum>;
+  readonly width: InputMaybe<SortOrderEnum>;
+};
+
+type ImageSharpSortInput = {
+  readonly children: InputMaybe<NodeSortInput>;
+  readonly fixed: InputMaybe<ImageSharpFixedSortInput>;
+  readonly fluid: InputMaybe<ImageSharpFluidSortInput>;
+  readonly gatsbyImageData: InputMaybe<SortOrderEnum>;
+  readonly id: InputMaybe<SortOrderEnum>;
+  readonly internal: InputMaybe<InternalSortInput>;
+  readonly original: InputMaybe<ImageSharpOriginalSortInput>;
+  readonly parent: InputMaybe<NodeSortInput>;
+  readonly resize: InputMaybe<ImageSharpResizeSortInput>;
 };
 
 type IntQueryOperatorInput = {
@@ -712,6 +2644,11 @@ type InternalSortInput = {
   readonly type: InputMaybe<SortOrderEnum>;
 };
 
+type JPGOptions = {
+  readonly progressive: InputMaybe<Scalars['Boolean']>;
+  readonly quality: InputMaybe<Scalars['Int']>;
+};
+
 type JSONQueryOperatorInput = {
   readonly eq: InputMaybe<Scalars['JSON']>;
   readonly glob: InputMaybe<Scalars['JSON']>;
@@ -754,6 +2691,11 @@ type NodeSortInput = {
   readonly parent: InputMaybe<NodeSortInput>;
 };
 
+type PNGOptions = {
+  readonly compressionSpeed: InputMaybe<Scalars['Int']>;
+  readonly quality: InputMaybe<Scalars['Int']>;
+};
+
 type PageInfo = {
   readonly currentPage: Scalars['Int'];
   readonly hasNextPage: Scalars['Boolean'];
@@ -764,21 +2706,53 @@ type PageInfo = {
   readonly totalCount: Scalars['Int'];
 };
 
+type Potrace = {
+  readonly alphaMax: InputMaybe<Scalars['Float']>;
+  readonly background: InputMaybe<Scalars['String']>;
+  readonly blackOnWhite: InputMaybe<Scalars['Boolean']>;
+  readonly color: InputMaybe<Scalars['String']>;
+  readonly optCurve: InputMaybe<Scalars['Boolean']>;
+  readonly optTolerance: InputMaybe<Scalars['Float']>;
+  readonly threshold: InputMaybe<Scalars['Int']>;
+  readonly turdSize: InputMaybe<Scalars['Float']>;
+  readonly turnPolicy: InputMaybe<PotraceTurnPolicy>;
+};
+
+type PotraceTurnPolicy =
+  | 'black'
+  | 'left'
+  | 'majority'
+  | 'minority'
+  | 'right'
+  | 'white';
+
 type Query = {
+  readonly allCountries: CountriesConnection;
   readonly allDirectory: DirectoryConnection;
   readonly allFile: FileConnection;
+  readonly allImageSharp: ImageSharpConnection;
   readonly allSite: SiteConnection;
   readonly allSiteBuildMetadata: SiteBuildMetadataConnection;
   readonly allSiteFunction: SiteFunctionConnection;
   readonly allSitePage: SitePageConnection;
   readonly allSitePlugin: SitePluginConnection;
+  readonly countries: Maybe<Countries>;
   readonly directory: Maybe<Directory>;
   readonly file: Maybe<File>;
+  readonly imageSharp: Maybe<ImageSharp>;
   readonly site: Maybe<Site>;
   readonly siteBuildMetadata: Maybe<SiteBuildMetadata>;
   readonly siteFunction: Maybe<SiteFunction>;
   readonly sitePage: Maybe<SitePage>;
   readonly sitePlugin: Maybe<SitePlugin>;
+};
+
+
+type Query_allCountriesArgs = {
+  filter: InputMaybe<CountriesFilterInput>;
+  limit: InputMaybe<Scalars['Int']>;
+  skip: InputMaybe<Scalars['Int']>;
+  sort: InputMaybe<ReadonlyArray<InputMaybe<CountriesSortInput>>>;
 };
 
 
@@ -795,6 +2769,14 @@ type Query_allFileArgs = {
   limit: InputMaybe<Scalars['Int']>;
   skip: InputMaybe<Scalars['Int']>;
   sort: InputMaybe<ReadonlyArray<InputMaybe<FileSortInput>>>;
+};
+
+
+type Query_allImageSharpArgs = {
+  filter: InputMaybe<ImageSharpFilterInput>;
+  limit: InputMaybe<Scalars['Int']>;
+  skip: InputMaybe<Scalars['Int']>;
+  sort: InputMaybe<ReadonlyArray<InputMaybe<ImageSharpSortInput>>>;
 };
 
 
@@ -835,6 +2817,23 @@ type Query_allSitePluginArgs = {
   limit: InputMaybe<Scalars['Int']>;
   skip: InputMaybe<Scalars['Int']>;
   sort: InputMaybe<ReadonlyArray<InputMaybe<SitePluginSortInput>>>;
+};
+
+
+type Query_countriesArgs = {
+  capital: InputMaybe<StringQueryOperatorInput>;
+  cca3: InputMaybe<StringQueryOperatorInput>;
+  children: InputMaybe<NodeFilterListInput>;
+  currencies: InputMaybe<CountriesCurrenciesFilterInput>;
+  flag: InputMaybe<StringQueryOperatorInput>;
+  flags: InputMaybe<CountriesFlagsFilterInput>;
+  id: InputMaybe<StringQueryOperatorInput>;
+  internal: InputMaybe<InternalFilterInput>;
+  languages: InputMaybe<StringQueryOperatorInput>;
+  name: InputMaybe<StringQueryOperatorInput>;
+  parent: InputMaybe<NodeFilterInput>;
+  region: InputMaybe<StringQueryOperatorInput>;
+  timezones: InputMaybe<StringQueryOperatorInput>;
 };
 
 
@@ -887,7 +2886,9 @@ type Query_fileArgs = {
   birthtime: InputMaybe<DateQueryOperatorInput>;
   birthtimeMs: InputMaybe<FloatQueryOperatorInput>;
   changeTime: InputMaybe<DateQueryOperatorInput>;
+  childImageSharp: InputMaybe<ImageSharpFilterInput>;
   children: InputMaybe<NodeFilterListInput>;
+  childrenImageSharp: InputMaybe<ImageSharpFilterListInput>;
   ctime: InputMaybe<DateQueryOperatorInput>;
   ctimeMs: InputMaybe<FloatQueryOperatorInput>;
   dev: InputMaybe<IntQueryOperatorInput>;
@@ -913,6 +2914,19 @@ type Query_fileArgs = {
   size: InputMaybe<IntQueryOperatorInput>;
   sourceInstanceName: InputMaybe<StringQueryOperatorInput>;
   uid: InputMaybe<IntQueryOperatorInput>;
+};
+
+
+type Query_imageSharpArgs = {
+  children: InputMaybe<NodeFilterListInput>;
+  fixed: InputMaybe<ImageSharpFixedFilterInput>;
+  fluid: InputMaybe<ImageSharpFluidFilterInput>;
+  gatsbyImageData: InputMaybe<GatsbyImageDataQueryOperatorInput>;
+  id: InputMaybe<StringQueryOperatorInput>;
+  internal: InputMaybe<InternalFilterInput>;
+  original: InputMaybe<ImageSharpOriginalFilterInput>;
+  parent: InputMaybe<NodeFilterInput>;
+  resize: InputMaybe<ImageSharpResizeFilterInput>;
 };
 
 
@@ -1766,6 +3780,50 @@ type StringQueryOperatorInput = {
   readonly nin: InputMaybe<ReadonlyArray<InputMaybe<Scalars['String']>>>;
   readonly regex: InputMaybe<Scalars['String']>;
 };
+
+type TransformOptions = {
+  readonly cropFocus: InputMaybe<ImageCropFocus>;
+  readonly duotone: InputMaybe<DuotoneGradient>;
+  readonly fit: InputMaybe<ImageFit>;
+  readonly grayscale: InputMaybe<Scalars['Boolean']>;
+  readonly rotate: InputMaybe<Scalars['Int']>;
+  readonly trim: InputMaybe<Scalars['Float']>;
+};
+
+type WebPOptions = {
+  readonly quality: InputMaybe<Scalars['Int']>;
+};
+
+type CountriesQueryQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type CountriesQueryQuery = { readonly allCountries: { readonly nodes: ReadonlyArray<{ readonly id: string, readonly cca3: string | null, readonly name: string | null, readonly capital: ReadonlyArray<string | null> | null, readonly languages: ReadonlyArray<string | null> | null, readonly timezones: ReadonlyArray<string | null> | null, readonly region: string | null, readonly flag: string | null, readonly flags: { readonly png: string | null, readonly alt: string | null } | null }> } };
+
+type GatsbyImageSharpFixedFragment = { readonly base64: string | null, readonly width: number, readonly height: number, readonly src: string, readonly srcSet: string };
+
+type GatsbyImageSharpFixed_noBase64Fragment = { readonly width: number, readonly height: number, readonly src: string, readonly srcSet: string };
+
+type GatsbyImageSharpFixed_tracedSVGFragment = { readonly tracedSVG: string | null, readonly width: number, readonly height: number, readonly src: string, readonly srcSet: string };
+
+type GatsbyImageSharpFixed_withWebpFragment = { readonly base64: string | null, readonly width: number, readonly height: number, readonly src: string, readonly srcSet: string, readonly srcWebp: string | null, readonly srcSetWebp: string | null };
+
+type GatsbyImageSharpFixed_withWebp_noBase64Fragment = { readonly width: number, readonly height: number, readonly src: string, readonly srcSet: string, readonly srcWebp: string | null, readonly srcSetWebp: string | null };
+
+type GatsbyImageSharpFixed_withWebp_tracedSVGFragment = { readonly tracedSVG: string | null, readonly width: number, readonly height: number, readonly src: string, readonly srcSet: string, readonly srcWebp: string | null, readonly srcSetWebp: string | null };
+
+type GatsbyImageSharpFluidFragment = { readonly base64: string | null, readonly aspectRatio: number, readonly src: string, readonly srcSet: string, readonly sizes: string };
+
+type GatsbyImageSharpFluid_noBase64Fragment = { readonly aspectRatio: number, readonly src: string, readonly srcSet: string, readonly sizes: string };
+
+type GatsbyImageSharpFluid_tracedSVGFragment = { readonly tracedSVG: string | null, readonly aspectRatio: number, readonly src: string, readonly srcSet: string, readonly sizes: string };
+
+type GatsbyImageSharpFluid_withWebpFragment = { readonly base64: string | null, readonly aspectRatio: number, readonly src: string, readonly srcSet: string, readonly srcWebp: string | null, readonly srcSetWebp: string | null, readonly sizes: string };
+
+type GatsbyImageSharpFluid_withWebp_noBase64Fragment = { readonly aspectRatio: number, readonly src: string, readonly srcSet: string, readonly srcWebp: string | null, readonly srcSetWebp: string | null, readonly sizes: string };
+
+type GatsbyImageSharpFluid_withWebp_tracedSVGFragment = { readonly tracedSVG: string | null, readonly aspectRatio: number, readonly src: string, readonly srcSet: string, readonly srcWebp: string | null, readonly srcSetWebp: string | null, readonly sizes: string };
+
+type GatsbyImageSharpFluidLimitPresentationSizeFragment = { readonly maxHeight: number, readonly maxWidth: number };
 
 
 }
